@@ -166,7 +166,7 @@ return [
         /*
          * Package Service Providers...
          */
-
+        Vinkla\Facebook\FacebookServiceProvider::class,
         //
 
         /*
@@ -226,6 +226,7 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
 
+        'Facebook' => Vinkla\Facebook\Facades\Facebook::class,
     ],
 
 ];
