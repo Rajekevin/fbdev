@@ -2,6 +2,8 @@ const elixir = require('laravel-elixir');
 
 require('laravel-elixir-vue-2');
 
+var bowerDir = './resources/assets/bower/'
+
 /*
  |--------------------------------------------------------------------------
  | Elixir Asset Management
@@ -15,5 +17,12 @@ require('laravel-elixir-vue-2');
 
 elixir((mix) => {
     mix.sass('app.scss')
-       .webpack('app.js');
-});
+    .sass('./resources/assets/BO/sass/main.scss', 'public/BO/css')
+    .scripts([
+        bowerDir + 'jquery/dist/jquery.min.js',
+        bowerDir + 'bootstrap-sass/assets/javascripts/bootstrap.min.js'
+    ], 'public/BO/js/vendor.js')
+    .copy(bowerDir + 'font-awesome/fonts/**/*', 'public/BO/fonts')
+    .webpack('app.js');
+})
+;
