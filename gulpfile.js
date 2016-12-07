@@ -19,8 +19,8 @@ elixir((mix) => {
     mix.sass('app.scss')
     .sass('./resources/assets/BO/sass/main.scss', 'public/BO/css')
     .scripts([
-        bowerDir + 'jquery/dist/jquery.min.js',
-        bowerDir + 'bootstrap-sass/assets/javascripts/bootstrap.min.js'
+        bowerDir + 'jquery/dist/jquery.js',
+        bowerDir + 'bootstrap-sass/assets/javascripts/bootstrap.js'
     ], 'public/BO/js/vendor.js')
     .copy(bowerDir + 'font-awesome/fonts/**/*', 'public/BO/fonts')
     .webpack('app.js');

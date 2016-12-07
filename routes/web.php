@@ -15,6 +15,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('admin', function () {
-    return view('BO.index');
+Route::group(['prefix' => 'admin', "as"=>"admin."], function () {
+    Route::get('/', function () {
+        return view('BO.index');
+    })->name('dashboard');
+
 });
