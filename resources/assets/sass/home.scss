@@ -1,9 +1,28 @@
-header {
-	background-image: url("../../img/header.jpg");
-	background-size: cover;
+.header {
+  .header_background-container {
+    background-image: url("../../img/header.jpg");
+    background-size: cover;
     height: 50vh;
-	display: flex;
+    display: flex;
     text-align: center;
     align-items: center;
     justify-content: center;
+  }
+
+  .header_title {
+    font-size: 2em;
+  }
+}
+
+.row {
+  border: 1px solid black;
+  margin: 20px;
+
+  .col.concours {
+    width: 50vw;
+    position: relative;
+    float: left;
+    box-sizing: border-box;
+    margin: 20px;
+  }
 }
