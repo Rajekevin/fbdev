@@ -11,6 +11,10 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+/**
+ * Routes used in front-end web pages
+ */
+Route::get('/', [
+    'as'        => 'root',
+    'uses'      => 'Frontend\HomeController@index'
+]);
