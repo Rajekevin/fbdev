@@ -8,3 +8,4 @@ Homestead.yaml
 .env
 
 /resources/assets/bower
+/public/BO
