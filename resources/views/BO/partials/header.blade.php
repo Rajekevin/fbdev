@@ -15,6 +15,7 @@
 </head>
 
 <header class="navbar navbar-inverse navbar-fixed-top" role="banner">
+    <a id="leftmenu-trigger" class="tooltips" data-toggle="tooltip" data-placement="right" title="" data-original-title="Toggle Sidebar"></a>
     <div class="navbar-header pull-left">
         <a class="navbar-brand" href="index.php">Avant</a>
     </div>

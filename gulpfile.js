@@ -23,6 +23,7 @@ elixir((mix) => {
         bowerDir + 'bootstrap-sass/assets/javascripts/bootstrap.js'
     ], 'public/BO/js/vendor.js')
     .copy(bowerDir + 'font-awesome/fonts/**/*', 'public/BO/fonts')
+    .copy('./resources/assets/BO/img/**/*', 'public/BO/img')
     .webpack('app.js');
 })
 ;
