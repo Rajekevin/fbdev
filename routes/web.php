@@ -15,6 +15,13 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/test', function () {
+    return '<a href="'.url('/redirect').'">Login FB</a>';
+});
+
+Route::get('/redirect', 'SocialAuthController@redirect');
+Route::get('/callback', 'SocialAuthController@callback');
+
 Route::group(['prefix' => 'admin', "as"=>"admin."], function () {
     Route::get('/', function () {
         return view('BO.index');

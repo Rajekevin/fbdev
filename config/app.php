@@ -167,6 +167,8 @@ return [
          * Package Service Providers...
          */
         Vinkla\Facebook\FacebookServiceProvider::class,
+        Laravel\Socialite\SocialiteServiceProvider::class,
+        Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
         //
 
         /*
@@ -227,6 +229,7 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
 
         'Facebook' => Vinkla\Facebook\Facades\Facebook::class,
+        'Socialite' => Laravel\Socialite\Facades\Socialite::class,
     ],
 
 ];
