@@ -169,6 +169,8 @@ return [
         Vinkla\Facebook\FacebookServiceProvider::class,
         Laravel\Socialite\SocialiteServiceProvider::class,
         Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
+        Jenssegers\Date\DateServiceProvider::class,
+        Barryvdh\Debugbar\ServiceProvider::class,
         //
 
         /*
@@ -230,6 +232,8 @@ return [
 
         'Facebook' => Vinkla\Facebook\Facades\Facebook::class,
         'Socialite' => Laravel\Socialite\Facades\Socialite::class,
+        'Date' => Jenssegers\Date\Date::class,
+        'Debugbar' => Barryvdh\Debugbar\Facade::class,
     ],
 
 ];

@@ -37,7 +37,7 @@ return [
     'facebook' => [
         'client_id' => '905409539589934',
         'client_secret' => 'a8193ec67e796ceb74f8bea9594fa221',
-        'redirect' => 'http://mickey.fbdev.fr/redirect',
+        'redirect' => 'http://mickey.fbdev.fr/callback',
     ]
 
 ];
