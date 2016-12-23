@@ -3,6 +3,7 @@
 namespace App\Http\Middleware;
 
 use Closure;
+use Facebook\Exceptions\FacebookSDKException;
 
 class Administrator
 {
@@ -20,14 +21,14 @@ class Administrator
         elseif (\Auth::check()) {
             $token = env('FACEBOOK_APP_ID') . '|' . env('FACEBOOK_SECRET');
             try {
-                $appRoles = \Facebook::get('/' . env('FACEBOOK_APP_ID') . '/roles', $token)->getDecodedBody();
+                $appRoles = \Facebook::get('/' . env('FACEBOOK_APP_ID') . '/roles?fields=user', $token)->getDecodedBody();
                 foreach ($appRoles['data'] as $role) {
-                    if ($role['user'] == \Auth::user()->provider_id && $role['role'] == 'administrators') {
+                    if ($role['user'] === \Auth::user()->provider_id) {
                         \Session::put('isAdmin', true);
                         return $next($request);
                     }
                 }
-            } catch (\Facebook\Exceptions\FacebookSDKException $e) {
+            } catch (FacebookSDKException $e) {
                 dd($e->getMessage());
             }
             return redirect('/')->with('error', 'You have to be admin to access');

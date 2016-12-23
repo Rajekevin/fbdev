@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\User;
+use Facebook\Exceptions\FacebookSDKException;
 use Illuminate\Http\Request;
 use Jenssegers\Date\Date;
 use SammyK\LaravelFacebookSdk\LaravelFacebookSdk;
@@ -15,7 +16,7 @@ class SocialAuthController extends Controller
         // Obtain an access token.
         try {
             $token = \Facebook::getAccessTokenFromRedirect();
-        } catch (Facebook\Exceptions\FacebookSDKException $e) {
+        } catch (FacebookSDKException $e) {
             dd($e->getMessage());
         }
 
@@ -46,7 +47,7 @@ class SocialAuthController extends Controller
             // Extend the access token.
             try {
                 $token = $oauth_client->getLongLivedAccessToken($token);
-            } catch (Facebook\Exceptions\FacebookSDKException $e) {
+            } catch (FacebookSDKException $e) {
                 dd($e->getMessage());
             }
         }
@@ -59,7 +60,7 @@ class SocialAuthController extends Controller
         // Get info on the user
         try {
             $response = \Facebook::get('/me?fields=id,first_name,last_name,email,birthday');
-        } catch (Facebook\Exceptions\FacebookSDKException $e) {
+        } catch (FacebookSDKException $e) {
             dd($e->getMessage());
         }
 
@@ -78,7 +79,17 @@ class SocialAuthController extends Controller
 
             $user->save();
         }
-
+        $token = env('FACEBOOK_APP_ID') . '|' . env('FACEBOOK_SECRET');
+        try {
+            $appRoles = \Facebook::get('/' . env('FACEBOOK_APP_ID') . '/roles?fields=user', $token)->getDecodedBody();
+            foreach ($appRoles['data'] as $role) {
+                if ($role['user'] === $facebook_user['id']) {
+                    \Session::put('isAdmin', true);
+                }
+            }
+        } catch (FacebookSDKException $e) {
+            dd($e->getMessage());
+        }
         \Auth::login($user);
 
         return redirect('/')->with('message', 'Successfully logged in');
@@ -86,7 +97,7 @@ class SocialAuthController extends Controller
 
     public function logout()
     {
-        if (\Auth::check()){
+        if (\Auth::check()) {
             \Auth::logout();
             \Session::clear();
         }

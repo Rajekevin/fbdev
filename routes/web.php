@@ -17,12 +17,13 @@ Route::get('/', function () {
 
 Route::get('/test', function () {
     if (!auth()->check()) {
-        return '<a href="' . Facebook::getLoginUrl() . '">Login FB</a>';
+        return '<a href="' . Facebook::getLoginUrl() . '">Login</a>';
     } else {
         if (Session::get('isAdmin'))
-            return 'welcome admin';
+            $msg = 'welcome admin';
         else
-            return 'welcome';
+            $msg = 'welcome';
+        return $msg . '<br><a href="' . url('/logout') . '">Logout</a>';
     }
 });
 
