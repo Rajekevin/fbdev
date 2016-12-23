@@ -16,15 +16,20 @@ Route::get('/', function () {
 });
 
 Route::get('/test', function () {
-    return '<a href="'.url('/redirect').'">Login FB</a>';
+    if (!auth()->check()) {
+        return '<a href="' . Facebook::getLoginUrl() . '">Login FB</a>';
+    } else {
+        if (Session::get('isAdmin'))
+            return 'welcome admin';
+        else
+            return 'welcome';
+    }
 });
 
-Route::get('/redirect', 'SocialAuthController@redirect');
 Route::get('/callback', 'SocialAuthController@callback');
 
-Route::group(['prefix' => 'admin', "as"=>"admin."], function () {
+Route::group(['prefix' => 'admin', "as" => "admin."], function () {
     Route::get('/', function () {
         return view('BO.index');
-    })->name('dashboard');
-
+    })->name('dashboard')->middleware('admin');
 });

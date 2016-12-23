@@ -166,11 +166,10 @@ return [
         /*
          * Package Service Providers...
          */
-        Vinkla\Facebook\FacebookServiceProvider::class,
-        Laravel\Socialite\SocialiteServiceProvider::class,
         Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
         Jenssegers\Date\DateServiceProvider::class,
         Barryvdh\Debugbar\ServiceProvider::class,
+        SammyK\LaravelFacebookSdk\LaravelFacebookSdkServiceProvider::class,
         //
 
         /*
@@ -230,10 +229,9 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
 
-        'Facebook' => Vinkla\Facebook\Facades\Facebook::class,
-        'Socialite' => Laravel\Socialite\Facades\Socialite::class,
         'Date' => Jenssegers\Date\Date::class,
         'Debugbar' => Barryvdh\Debugbar\Facade::class,
+        'Facebook' => SammyK\LaravelFacebookSdk\FacebookFacade::class,
     ],
 
 ];

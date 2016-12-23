@@ -1,7 +1,7 @@
 <?php
 /**
  * A helper file for Laravel 5, to provide autocomplete information to your IDE
- * Generated for Laravel 5.3.26 on 2016-12-21.
+ * Generated for Laravel 5.3.26 on 2016-12-22.
  *
  * @author Barry vd. Heuvel <barryvdh@gmail.com>
  * @see https://github.com/barryvdh/laravel-ide-helper
@@ -11877,209 +11877,874 @@ namespace {
     }
 
 
-    class Facebook extends \Vinkla\Facebook\Facades\Facebook{
+    class Date extends \Jenssegers\Date\Date{
+        
+    }
+
+
+    class Debugbar extends \Barryvdh\Debugbar\Facade{
         
         /**
-         * Get the factory instance.
+         * Enable the Debugbar and boot, if not already booted.
          *
-         * @return \Vinkla\Facebook\FacebookFactory 
          * @static 
          */
-        public static function getFactory(){
-            return \Vinkla\Facebook\FacebookManager::getFactory();
+        public static function enable(){
+            return \Barryvdh\Debugbar\LaravelDebugbar::enable();
         }
         
         /**
-         * Get a connection instance.
+         * Boot the debugbar (add collectors, renderer and listener)
          *
-         * @param string $name
-         * @return object 
          * @static 
          */
-        public static function connection($name = null){
-            //Method inherited from \GrahamCampbell\Manager\AbstractManager            
-            return \Vinkla\Facebook\FacebookManager::connection($name);
+        public static function boot(){
+            return \Barryvdh\Debugbar\LaravelDebugbar::boot();
         }
         
         /**
-         * Reconnect to the given connection.
+         * 
          *
-         * @param string $name
-         * @return object 
          * @static 
          */
-        public static function reconnect($name = null){
-            //Method inherited from \GrahamCampbell\Manager\AbstractManager            
-            return \Vinkla\Facebook\FacebookManager::reconnect($name);
+        public static function shouldCollect($name, $default = false){
+            return \Barryvdh\Debugbar\LaravelDebugbar::shouldCollect($name, $default);
         }
         
         /**
-         * Disconnect from the given connection.
+         * Starts a measure
          *
-         * @param string $name
-         * @return void 
+         * @param string $name Internal name, used to stop the measure
+         * @param string $label Public name
          * @static 
          */
-        public static function disconnect($name = null){
-            //Method inherited from \GrahamCampbell\Manager\AbstractManager            
-            \Vinkla\Facebook\FacebookManager::disconnect($name);
+        public static function startMeasure($name, $label = null){
+            return \Barryvdh\Debugbar\LaravelDebugbar::startMeasure($name, $label);
         }
         
         /**
-         * Get the configuration for a connection.
+         * Stops a measure
          *
          * @param string $name
-         * @throws \InvalidArgumentException
+         * @static 
+         */
+        public static function stopMeasure($name){
+            return \Barryvdh\Debugbar\LaravelDebugbar::stopMeasure($name);
+        }
+        
+        /**
+         * Adds an exception to be profiled in the debug bar
+         *
+         * @param \Exception $e
+         * @deprecated in favor of addThrowable
+         * @static 
+         */
+        public static function addException($e){
+            return \Barryvdh\Debugbar\LaravelDebugbar::addException($e);
+        }
+        
+        /**
+         * Adds an exception to be profiled in the debug bar
+         *
+         * @param \Exception $e
+         * @static 
+         */
+        public static function addThrowable($e){
+            return \Barryvdh\Debugbar\LaravelDebugbar::addThrowable($e);
+        }
+        
+        /**
+         * Returns a JavascriptRenderer for this instance
+         *
+         * @param string $baseUrl
+         * @param string $basePathng
+         * @return \Barryvdh\Debugbar\JavascriptRenderer 
+         * @static 
+         */
+        public static function getJavascriptRenderer($baseUrl = null, $basePath = null){
+            return \Barryvdh\Debugbar\LaravelDebugbar::getJavascriptRenderer($baseUrl, $basePath);
+        }
+        
+        /**
+         * Modify the response and inject the debugbar (or data in headers)
+         *
+         * @param \Symfony\Component\HttpFoundation\Request $request
+         * @param \Symfony\Component\HttpFoundation\Response $response
+         * @return \Symfony\Component\HttpFoundation\Response 
+         * @static 
+         */
+        public static function modifyResponse($request, $response){
+            return \Barryvdh\Debugbar\LaravelDebugbar::modifyResponse($request, $response);
+        }
+        
+        /**
+         * Check if the Debugbar is enabled
+         *
+         * @return boolean 
+         * @static 
+         */
+        public static function isEnabled(){
+            return \Barryvdh\Debugbar\LaravelDebugbar::isEnabled();
+        }
+        
+        /**
+         * Collects the data from the collectors
+         *
          * @return array 
          * @static 
          */
-        public static function getConnectionConfig($name){
-            //Method inherited from \GrahamCampbell\Manager\AbstractManager            
-            return \Vinkla\Facebook\FacebookManager::getConnectionConfig($name);
+        public static function collect(){
+            return \Barryvdh\Debugbar\LaravelDebugbar::collect();
         }
         
         /**
-         * Get the default connection name.
+         * Injects the web debug toolbar into the given Response.
+         *
+         * @param \Symfony\Component\HttpFoundation\Response $response A Response instance
+         * Based on https://github.com/symfony/WebProfilerBundle/blob/master/EventListener/WebDebugToolbarListener.php
+         * @static 
+         */
+        public static function injectDebugbar($response){
+            return \Barryvdh\Debugbar\LaravelDebugbar::injectDebugbar($response);
+        }
+        
+        /**
+         * Disable the Debugbar
+         *
+         * @static 
+         */
+        public static function disable(){
+            return \Barryvdh\Debugbar\LaravelDebugbar::disable();
+        }
+        
+        /**
+         * Adds a measure
+         *
+         * @param string $label
+         * @param float $start
+         * @param float $end
+         * @static 
+         */
+        public static function addMeasure($label, $start, $end){
+            return \Barryvdh\Debugbar\LaravelDebugbar::addMeasure($label, $start, $end);
+        }
+        
+        /**
+         * Utility function to measure the execution of a Closure
+         *
+         * @param string $label
+         * @param \Closure $closure
+         * @static 
+         */
+        public static function measure($label, $closure){
+            return \Barryvdh\Debugbar\LaravelDebugbar::measure($label, $closure);
+        }
+        
+        /**
+         * Collect data in a CLI request
+         *
+         * @return array 
+         * @static 
+         */
+        public static function collectConsole(){
+            return \Barryvdh\Debugbar\LaravelDebugbar::collectConsole();
+        }
+        
+        /**
+         * Adds a message to the MessagesCollector
+         * 
+         * A message can be anything from an object to a string
+         *
+         * @param mixed $message
+         * @param string $label
+         * @static 
+         */
+        public static function addMessage($message, $label = 'info'){
+            return \Barryvdh\Debugbar\LaravelDebugbar::addMessage($message, $label);
+        }
+        
+        /**
+         * Adds a data collector
+         *
+         * @param \DebugBar\DataCollectorInterface $collector
+         * @throws DebugBarException
+         * @return $this 
+         * @static 
+         */
+        public static function addCollector($collector){
+            //Method inherited from \DebugBar\DebugBar            
+            return \Barryvdh\Debugbar\LaravelDebugbar::addCollector($collector);
+        }
+        
+        /**
+         * Checks if a data collector has been added
+         *
+         * @param string $name
+         * @return boolean 
+         * @static 
+         */
+        public static function hasCollector($name){
+            //Method inherited from \DebugBar\DebugBar            
+            return \Barryvdh\Debugbar\LaravelDebugbar::hasCollector($name);
+        }
+        
+        /**
+         * Returns a data collector
+         *
+         * @param string $name
+         * @return \DebugBar\DataCollectorInterface 
+         * @throws DebugBarException
+         * @static 
+         */
+        public static function getCollector($name){
+            //Method inherited from \DebugBar\DebugBar            
+            return \Barryvdh\Debugbar\LaravelDebugbar::getCollector($name);
+        }
+        
+        /**
+         * Returns an array of all data collectors
+         *
+         * @return \DebugBar\array[DataCollectorInterface] 
+         * @static 
+         */
+        public static function getCollectors(){
+            //Method inherited from \DebugBar\DebugBar            
+            return \Barryvdh\Debugbar\LaravelDebugbar::getCollectors();
+        }
+        
+        /**
+         * Sets the request id generator
+         *
+         * @param \DebugBar\RequestIdGeneratorInterface $generator
+         * @return $this 
+         * @static 
+         */
+        public static function setRequestIdGenerator($generator){
+            //Method inherited from \DebugBar\DebugBar            
+            return \Barryvdh\Debugbar\LaravelDebugbar::setRequestIdGenerator($generator);
+        }
+        
+        /**
+         * 
+         *
+         * @return \DebugBar\RequestIdGeneratorInterface 
+         * @static 
+         */
+        public static function getRequestIdGenerator(){
+            //Method inherited from \DebugBar\DebugBar            
+            return \Barryvdh\Debugbar\LaravelDebugbar::getRequestIdGenerator();
+        }
+        
+        /**
+         * Returns the id of the current request
          *
          * @return string 
          * @static 
          */
-        public static function getDefaultConnection(){
-            //Method inherited from \GrahamCampbell\Manager\AbstractManager            
-            return \Vinkla\Facebook\FacebookManager::getDefaultConnection();
+        public static function getCurrentRequestId(){
+            //Method inherited from \DebugBar\DebugBar            
+            return \Barryvdh\Debugbar\LaravelDebugbar::getCurrentRequestId();
         }
         
         /**
-         * Set the default connection name.
+         * Sets the storage backend to use to store the collected data
          *
-         * @param string $name
-         * @return void 
+         * @param \DebugBar\StorageInterface $storage
+         * @return $this 
          * @static 
          */
-        public static function setDefaultConnection($name){
-            //Method inherited from \GrahamCampbell\Manager\AbstractManager            
-            \Vinkla\Facebook\FacebookManager::setDefaultConnection($name);
+        public static function setStorage($storage = null){
+            //Method inherited from \DebugBar\DebugBar            
+            return \Barryvdh\Debugbar\LaravelDebugbar::setStorage($storage);
         }
         
         /**
-         * Register an extension connection resolver.
+         * 
          *
-         * @param string $name
-         * @param callable $resolver
-         * @return void 
+         * @return \DebugBar\StorageInterface 
          * @static 
          */
-        public static function extend($name, $resolver){
-            //Method inherited from \GrahamCampbell\Manager\AbstractManager            
-            \Vinkla\Facebook\FacebookManager::extend($name, $resolver);
+        public static function getStorage(){
+            //Method inherited from \DebugBar\DebugBar            
+            return \Barryvdh\Debugbar\LaravelDebugbar::getStorage();
         }
         
         /**
-         * Return all of the created connections.
+         * Checks if the data will be persisted
          *
-         * @return object[] 
+         * @return boolean 
          * @static 
          */
-        public static function getConnections(){
-            //Method inherited from \GrahamCampbell\Manager\AbstractManager            
-            return \Vinkla\Facebook\FacebookManager::getConnections();
+        public static function isDataPersisted(){
+            //Method inherited from \DebugBar\DebugBar            
+            return \Barryvdh\Debugbar\LaravelDebugbar::isDataPersisted();
         }
         
         /**
-         * Get the config instance.
+         * Sets the HTTP driver
          *
-         * @return \Illuminate\Contracts\Config\Repository 
+         * @param \DebugBar\HttpDriverInterface $driver
+         * @return $this 
          * @static 
          */
-        public static function getConfig(){
-            //Method inherited from \GrahamCampbell\Manager\AbstractManager            
-            return \Vinkla\Facebook\FacebookManager::getConfig();
+        public static function setHttpDriver($driver){
+            //Method inherited from \DebugBar\DebugBar            
+            return \Barryvdh\Debugbar\LaravelDebugbar::setHttpDriver($driver);
+        }
+        
+        /**
+         * Returns the HTTP driver
+         * 
+         * If no http driver where defined, a PhpHttpDriver is automatically created
+         *
+         * @return \DebugBar\HttpDriverInterface 
+         * @static 
+         */
+        public static function getHttpDriver(){
+            //Method inherited from \DebugBar\DebugBar            
+            return \Barryvdh\Debugbar\LaravelDebugbar::getHttpDriver();
+        }
+        
+        /**
+         * Returns collected data
+         * 
+         * Will collect the data if none have been collected yet
+         *
+         * @return array 
+         * @static 
+         */
+        public static function getData(){
+            //Method inherited from \DebugBar\DebugBar            
+            return \Barryvdh\Debugbar\LaravelDebugbar::getData();
+        }
+        
+        /**
+         * Returns an array of HTTP headers containing the data
+         *
+         * @param string $headerName
+         * @param integer $maxHeaderLength
+         * @return array 
+         * @static 
+         */
+        public static function getDataAsHeaders($headerName = 'phpdebugbar', $maxHeaderLength = 4096, $maxTotalHeaderLength = 250000){
+            //Method inherited from \DebugBar\DebugBar            
+            return \Barryvdh\Debugbar\LaravelDebugbar::getDataAsHeaders($headerName, $maxHeaderLength, $maxTotalHeaderLength);
+        }
+        
+        /**
+         * Sends the data through the HTTP headers
+         *
+         * @param bool $useOpenHandler
+         * @param string $headerName
+         * @param integer $maxHeaderLength
+         * @return $this 
+         * @static 
+         */
+        public static function sendDataInHeaders($useOpenHandler = null, $headerName = 'phpdebugbar', $maxHeaderLength = 4096){
+            //Method inherited from \DebugBar\DebugBar            
+            return \Barryvdh\Debugbar\LaravelDebugbar::sendDataInHeaders($useOpenHandler, $headerName, $maxHeaderLength);
+        }
+        
+        /**
+         * Stacks the data in the session for later rendering
+         *
+         * @static 
+         */
+        public static function stackData(){
+            //Method inherited from \DebugBar\DebugBar            
+            return \Barryvdh\Debugbar\LaravelDebugbar::stackData();
+        }
+        
+        /**
+         * Checks if there is stacked data in the session
+         *
+         * @return boolean 
+         * @static 
+         */
+        public static function hasStackedData(){
+            //Method inherited from \DebugBar\DebugBar            
+            return \Barryvdh\Debugbar\LaravelDebugbar::hasStackedData();
+        }
+        
+        /**
+         * Returns the data stacked in the session
+         *
+         * @param boolean $delete Whether to delete the data in the session
+         * @return array 
+         * @static 
+         */
+        public static function getStackedData($delete = true){
+            //Method inherited from \DebugBar\DebugBar            
+            return \Barryvdh\Debugbar\LaravelDebugbar::getStackedData($delete);
+        }
+        
+        /**
+         * Sets the key to use in the $_SESSION array
+         *
+         * @param string $ns
+         * @return $this 
+         * @static 
+         */
+        public static function setStackDataSessionNamespace($ns){
+            //Method inherited from \DebugBar\DebugBar            
+            return \Barryvdh\Debugbar\LaravelDebugbar::setStackDataSessionNamespace($ns);
+        }
+        
+        /**
+         * Returns the key used in the $_SESSION array
+         *
+         * @return string 
+         * @static 
+         */
+        public static function getStackDataSessionNamespace(){
+            //Method inherited from \DebugBar\DebugBar            
+            return \Barryvdh\Debugbar\LaravelDebugbar::getStackDataSessionNamespace();
+        }
+        
+        /**
+         * Sets whether to only use the session to store stacked data even
+         * if a storage is enabled
+         *
+         * @param boolean $enabled
+         * @return $this 
+         * @static 
+         */
+        public static function setStackAlwaysUseSessionStorage($enabled = true){
+            //Method inherited from \DebugBar\DebugBar            
+            return \Barryvdh\Debugbar\LaravelDebugbar::setStackAlwaysUseSessionStorage($enabled);
+        }
+        
+        /**
+         * Checks if the session is always used to store stacked data
+         * even if a storage is enabled
+         *
+         * @return boolean 
+         * @static 
+         */
+        public static function isStackAlwaysUseSessionStorage(){
+            //Method inherited from \DebugBar\DebugBar            
+            return \Barryvdh\Debugbar\LaravelDebugbar::isStackAlwaysUseSessionStorage();
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */
+        public static function offsetSet($key, $value){
+            //Method inherited from \DebugBar\DebugBar            
+            return \Barryvdh\Debugbar\LaravelDebugbar::offsetSet($key, $value);
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */
+        public static function offsetGet($key){
+            //Method inherited from \DebugBar\DebugBar            
+            return \Barryvdh\Debugbar\LaravelDebugbar::offsetGet($key);
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */
+        public static function offsetExists($key){
+            //Method inherited from \DebugBar\DebugBar            
+            return \Barryvdh\Debugbar\LaravelDebugbar::offsetExists($key);
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */
+        public static function offsetUnset($key){
+            //Method inherited from \DebugBar\DebugBar            
+            return \Barryvdh\Debugbar\LaravelDebugbar::offsetUnset($key);
         }
         
     }
 
 
-    class Socialite extends \Laravel\Socialite\Facades\Socialite{
+    class Facebook extends \SammyK\LaravelFacebookSdk\FacebookFacade{
         
         /**
-         * Get a driver instance.
-         *
-         * @param string $driver
-         * @return mixed 
-         * @static 
-         */
-        public static function with($driver){
-            return \Laravel\Socialite\SocialiteManager::with($driver);
-        }
-        
-        /**
-         * Build an OAuth 2 provider instance.
-         *
-         * @param string $provider
-         * @param array $config
-         * @return \Laravel\Socialite\Two\AbstractProvider 
-         * @static 
-         */
-        public static function buildProvider($provider, $config){
-            return \Laravel\Socialite\SocialiteManager::buildProvider($provider, $config);
-        }
-        
-        /**
-         * Format the server configuration.
+         * 
          *
          * @param array $config
-         * @return array 
+         * @return \SammyK\LaravelFacebookSdk\LaravelFacebookSdk 
          * @static 
          */
-        public static function formatConfig($config){
-            return \Laravel\Socialite\SocialiteManager::formatConfig($config);
+        public static function newInstance($config){
+            return \SammyK\LaravelFacebookSdk\LaravelFacebookSdk::newInstance($config);
         }
         
         /**
-         * Get the default driver name.
+         * Generate an OAuth 2.0 authorization URL for authentication.
          *
-         * @throws \InvalidArgumentException
+         * @param array $scope
+         * @param string $callback_url
          * @return string 
          * @static 
          */
-        public static function getDefaultDriver(){
-            return \Laravel\Socialite\SocialiteManager::getDefaultDriver();
+        public static function getLoginUrl($scope = array(), $callback_url = ''){
+            return \SammyK\LaravelFacebookSdk\LaravelFacebookSdk::getLoginUrl($scope, $callback_url);
         }
         
         /**
-         * Get a driver instance.
+         * Generate a re-request authorization URL.
          *
-         * @param string $driver
-         * @return mixed 
+         * @param array $scope
+         * @param string $callback_url
+         * @return string 
          * @static 
          */
-        public static function driver($driver = null){
-            //Method inherited from \Illuminate\Support\Manager            
-            return \Laravel\Socialite\SocialiteManager::driver($driver);
+        public static function getReRequestUrl($scope, $callback_url = ''){
+            return \SammyK\LaravelFacebookSdk\LaravelFacebookSdk::getReRequestUrl($scope, $callback_url);
         }
         
         /**
-         * Register a custom driver creator Closure.
+         * Generate a re-authentication authorization URL.
          *
-         * @param string $driver
-         * @param \Closure $callback
-         * @return $this 
+         * @param array $scope
+         * @param string $callback_url
+         * @return string 
          * @static 
          */
-        public static function extend($driver, $callback){
-            //Method inherited from \Illuminate\Support\Manager            
-            return \Laravel\Socialite\SocialiteManager::extend($driver, $callback);
+        public static function getReAuthenticationUrl($scope = array(), $callback_url = ''){
+            return \SammyK\LaravelFacebookSdk\LaravelFacebookSdk::getReAuthenticationUrl($scope, $callback_url);
         }
         
         /**
-         * Get all of the created "drivers".
+         * Get an access token from a redirect.
          *
+         * @param string $callback_url
+         * @return \Facebook\Authentication\AccessToken|null 
+         * @static 
+         */
+        public static function getAccessTokenFromRedirect($callback_url = ''){
+            return \SammyK\LaravelFacebookSdk\LaravelFacebookSdk::getAccessTokenFromRedirect($callback_url);
+        }
+        
+        /**
+         * Returns the FacebookApp entity.
+         *
+         * @return \Facebook\FacebookApp 
+         * @static 
+         */
+        public static function getApp(){
+            //Method inherited from \Facebook\Facebook            
+            return \SammyK\LaravelFacebookSdk\LaravelFacebookSdk::getApp();
+        }
+        
+        /**
+         * Returns the FacebookClient service.
+         *
+         * @return \Facebook\FacebookClient 
+         * @static 
+         */
+        public static function getClient(){
+            //Method inherited from \Facebook\Facebook            
+            return \SammyK\LaravelFacebookSdk\LaravelFacebookSdk::getClient();
+        }
+        
+        /**
+         * Returns the OAuth 2.0 client service.
+         *
+         * @return \Facebook\OAuth2Client 
+         * @static 
+         */
+        public static function getOAuth2Client(){
+            //Method inherited from \Facebook\Facebook            
+            return \SammyK\LaravelFacebookSdk\LaravelFacebookSdk::getOAuth2Client();
+        }
+        
+        /**
+         * Returns the last response returned from Graph.
+         *
+         * @return \Facebook\FacebookResponse|\Facebook\FacebookBatchResponse|null 
+         * @static 
+         */
+        public static function getLastResponse(){
+            //Method inherited from \Facebook\Facebook            
+            return \SammyK\LaravelFacebookSdk\LaravelFacebookSdk::getLastResponse();
+        }
+        
+        /**
+         * Returns the URL detection handler.
+         *
+         * @return \Facebook\UrlDetectionInterface 
+         * @static 
+         */
+        public static function getUrlDetectionHandler(){
+            //Method inherited from \Facebook\Facebook            
+            return \SammyK\LaravelFacebookSdk\LaravelFacebookSdk::getUrlDetectionHandler();
+        }
+        
+        /**
+         * Returns the default AccessToken entity.
+         *
+         * @return \Facebook\AccessToken|null 
+         * @static 
+         */
+        public static function getDefaultAccessToken(){
+            //Method inherited from \Facebook\Facebook            
+            return \SammyK\LaravelFacebookSdk\LaravelFacebookSdk::getDefaultAccessToken();
+        }
+        
+        /**
+         * Sets the default access token to use with requests.
+         *
+         * @param \Facebook\AccessToken|string $accessToken The access token to save.
+         * @throws \InvalidArgumentException
+         * @static 
+         */
+        public static function setDefaultAccessToken($accessToken){
+            //Method inherited from \Facebook\Facebook            
+            return \SammyK\LaravelFacebookSdk\LaravelFacebookSdk::setDefaultAccessToken($accessToken);
+        }
+        
+        /**
+         * Returns the default Graph version.
+         *
+         * @return string 
+         * @static 
+         */
+        public static function getDefaultGraphVersion(){
+            //Method inherited from \Facebook\Facebook            
+            return \SammyK\LaravelFacebookSdk\LaravelFacebookSdk::getDefaultGraphVersion();
+        }
+        
+        /**
+         * Returns the redirect login helper.
+         *
+         * @return \Facebook\FacebookRedirectLoginHelper 
+         * @static 
+         */
+        public static function getRedirectLoginHelper(){
+            //Method inherited from \Facebook\Facebook            
+            return \SammyK\LaravelFacebookSdk\LaravelFacebookSdk::getRedirectLoginHelper();
+        }
+        
+        /**
+         * Returns the JavaScript helper.
+         *
+         * @return \Facebook\FacebookJavaScriptHelper 
+         * @static 
+         */
+        public static function getJavaScriptHelper(){
+            //Method inherited from \Facebook\Facebook            
+            return \SammyK\LaravelFacebookSdk\LaravelFacebookSdk::getJavaScriptHelper();
+        }
+        
+        /**
+         * Returns the canvas helper.
+         *
+         * @return \Facebook\FacebookCanvasHelper 
+         * @static 
+         */
+        public static function getCanvasHelper(){
+            //Method inherited from \Facebook\Facebook            
+            return \SammyK\LaravelFacebookSdk\LaravelFacebookSdk::getCanvasHelper();
+        }
+        
+        /**
+         * Returns the page tab helper.
+         *
+         * @return \Facebook\FacebookPageTabHelper 
+         * @static 
+         */
+        public static function getPageTabHelper(){
+            //Method inherited from \Facebook\Facebook            
+            return \SammyK\LaravelFacebookSdk\LaravelFacebookSdk::getPageTabHelper();
+        }
+        
+        /**
+         * Sends a GET request to Graph and returns the result.
+         *
+         * @param string $endpoint
+         * @param \Facebook\AccessToken|string|null $accessToken
+         * @param string|null $eTag
+         * @param string|null $graphVersion
+         * @return \Facebook\FacebookResponse 
+         * @throws FacebookSDKException
+         * @static 
+         */
+        public static function get($endpoint, $accessToken = null, $eTag = null, $graphVersion = null){
+            //Method inherited from \Facebook\Facebook            
+            return \SammyK\LaravelFacebookSdk\LaravelFacebookSdk::get($endpoint, $accessToken, $eTag, $graphVersion);
+        }
+        
+        /**
+         * Sends a POST request to Graph and returns the result.
+         *
+         * @param string $endpoint
+         * @param array $params
+         * @param \Facebook\AccessToken|string|null $accessToken
+         * @param string|null $eTag
+         * @param string|null $graphVersion
+         * @return \Facebook\FacebookResponse 
+         * @throws FacebookSDKException
+         * @static 
+         */
+        public static function post($endpoint, $params = array(), $accessToken = null, $eTag = null, $graphVersion = null){
+            //Method inherited from \Facebook\Facebook            
+            return \SammyK\LaravelFacebookSdk\LaravelFacebookSdk::post($endpoint, $params, $accessToken, $eTag, $graphVersion);
+        }
+        
+        /**
+         * Sends a DELETE request to Graph and returns the result.
+         *
+         * @param string $endpoint
+         * @param array $params
+         * @param \Facebook\AccessToken|string|null $accessToken
+         * @param string|null $eTag
+         * @param string|null $graphVersion
+         * @return \Facebook\FacebookResponse 
+         * @throws FacebookSDKException
+         * @static 
+         */
+        public static function delete($endpoint, $params = array(), $accessToken = null, $eTag = null, $graphVersion = null){
+            //Method inherited from \Facebook\Facebook            
+            return \SammyK\LaravelFacebookSdk\LaravelFacebookSdk::delete($endpoint, $params, $accessToken, $eTag, $graphVersion);
+        }
+        
+        /**
+         * Sends a request to Graph for the next page of results.
+         *
+         * @param \Facebook\GraphEdge $graphEdge The GraphEdge to paginate over.
+         * @return \Facebook\GraphEdge|null 
+         * @throws FacebookSDKException
+         * @static 
+         */
+        public static function next($graphEdge){
+            //Method inherited from \Facebook\Facebook            
+            return \SammyK\LaravelFacebookSdk\LaravelFacebookSdk::next($graphEdge);
+        }
+        
+        /**
+         * Sends a request to Graph for the previous page of results.
+         *
+         * @param \Facebook\GraphEdge $graphEdge The GraphEdge to paginate over.
+         * @return \Facebook\GraphEdge|null 
+         * @throws FacebookSDKException
+         * @static 
+         */
+        public static function previous($graphEdge){
+            //Method inherited from \Facebook\Facebook            
+            return \SammyK\LaravelFacebookSdk\LaravelFacebookSdk::previous($graphEdge);
+        }
+        
+        /**
+         * Sends a request to Graph for the next page of results.
+         *
+         * @param \Facebook\GraphEdge $graphEdge The GraphEdge to paginate over.
+         * @param string $direction The direction of the pagination: next|previous.
+         * @return \Facebook\GraphEdge|null 
+         * @throws FacebookSDKException
+         * @static 
+         */
+        public static function getPaginationResults($graphEdge, $direction){
+            //Method inherited from \Facebook\Facebook            
+            return \SammyK\LaravelFacebookSdk\LaravelFacebookSdk::getPaginationResults($graphEdge, $direction);
+        }
+        
+        /**
+         * Sends a request to Graph and returns the result.
+         *
+         * @param string $method
+         * @param string $endpoint
+         * @param array $params
+         * @param \Facebook\AccessToken|string|null $accessToken
+         * @param string|null $eTag
+         * @param string|null $graphVersion
+         * @return \Facebook\FacebookResponse 
+         * @throws FacebookSDKException
+         * @static 
+         */
+        public static function sendRequest($method, $endpoint, $params = array(), $accessToken = null, $eTag = null, $graphVersion = null){
+            //Method inherited from \Facebook\Facebook            
+            return \SammyK\LaravelFacebookSdk\LaravelFacebookSdk::sendRequest($method, $endpoint, $params, $accessToken, $eTag, $graphVersion);
+        }
+        
+        /**
+         * Sends a batched request to Graph and returns the result.
+         *
+         * @param array $requests
+         * @param \Facebook\AccessToken|string|null $accessToken
+         * @param string|null $graphVersion
+         * @return \Facebook\FacebookBatchResponse 
+         * @throws FacebookSDKException
+         * @static 
+         */
+        public static function sendBatchRequest($requests, $accessToken = null, $graphVersion = null){
+            //Method inherited from \Facebook\Facebook            
+            return \SammyK\LaravelFacebookSdk\LaravelFacebookSdk::sendBatchRequest($requests, $accessToken, $graphVersion);
+        }
+        
+        /**
+         * Instantiates a new FacebookRequest entity.
+         *
+         * @param string $method
+         * @param string $endpoint
+         * @param array $params
+         * @param \Facebook\AccessToken|string|null $accessToken
+         * @param string|null $eTag
+         * @param string|null $graphVersion
+         * @return \Facebook\FacebookRequest 
+         * @throws FacebookSDKException
+         * @static 
+         */
+        public static function request($method, $endpoint, $params = array(), $accessToken = null, $eTag = null, $graphVersion = null){
+            //Method inherited from \Facebook\Facebook            
+            return \SammyK\LaravelFacebookSdk\LaravelFacebookSdk::request($method, $endpoint, $params, $accessToken, $eTag, $graphVersion);
+        }
+        
+        /**
+         * Factory to create FacebookFile's.
+         *
+         * @param string $pathToFile
+         * @return \Facebook\FacebookFile 
+         * @throws FacebookSDKException
+         * @static 
+         */
+        public static function fileToUpload($pathToFile){
+            //Method inherited from \Facebook\Facebook            
+            return \SammyK\LaravelFacebookSdk\LaravelFacebookSdk::fileToUpload($pathToFile);
+        }
+        
+        /**
+         * Factory to create FacebookVideo's.
+         *
+         * @param string $pathToFile
+         * @return \Facebook\FacebookVideo 
+         * @throws FacebookSDKException
+         * @static 
+         */
+        public static function videoToUpload($pathToFile){
+            //Method inherited from \Facebook\Facebook            
+            return \SammyK\LaravelFacebookSdk\LaravelFacebookSdk::videoToUpload($pathToFile);
+        }
+        
+        /**
+         * Upload a video in chunks.
+         *
+         * @param int $target The id of the target node before the /videos edge.
+         * @param string $pathToFile The full path to the file.
+         * @param array $metadata The metadata associated with the video file.
+         * @param string|null $accessToken The access token.
+         * @param int $maxTransferTries The max times to retry a failed upload chunk.
+         * @param string|null $graphVersion The Graph API version to use.
          * @return array 
+         * @throws FacebookSDKException
          * @static 
          */
-        public static function getDrivers(){
-            //Method inherited from \Illuminate\Support\Manager            
-            return \Laravel\Socialite\SocialiteManager::getDrivers();
+        public static function uploadVideo($target, $pathToFile, $metadata = array(), $accessToken = null, $maxTransferTries = 5, $graphVersion = null){
+            //Method inherited from \Facebook\Facebook            
+            return \SammyK\LaravelFacebookSdk\LaravelFacebookSdk::uploadVideo($target, $pathToFile, $metadata, $accessToken, $maxTransferTries, $graphVersion);
         }
         
     }
