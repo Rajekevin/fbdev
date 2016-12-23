@@ -27,6 +27,7 @@ Route::get('/test', function () {
 });
 
 Route::get('/callback', 'SocialAuthController@callback');
+Route::get('/logout', 'SocialAuthController@logout');
 
 Route::group(['prefix' => 'admin', "as" => "admin."], function () {
     Route::get('/', function () {

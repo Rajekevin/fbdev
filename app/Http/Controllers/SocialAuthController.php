@@ -82,6 +82,14 @@ class SocialAuthController extends Controller
         \Auth::login($user);
 
         return redirect('/')->with('message', 'Successfully logged in');
+    }
 
+    public function logout()
+    {
+        if (\Auth::check()){
+            \Auth::logout();
+            \Session::clear();
+        }
+        return redirect('/');
     }
 }
