@@ -38,7 +38,7 @@
                                 <td>{{ $user->email }}</td>
                                 <td>{{ $user->birthday }}</td>
                                 <td>
-                                    <input type='checkbox' data-toggle-position='right' data-toggle-color='#f00' />
+                                    <input type='checkbox' class="toggler" data-toggle-position='right' data-toggle-color='#f00' />
                                 </td>
                             </tr>
                         @endforeach
