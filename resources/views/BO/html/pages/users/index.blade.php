@@ -2,7 +2,7 @@
 
 @section('breadcrumb')
     <li><a href="{{ route('admin.dashboard') }}">Users</a></li>
-    <li class="active"><a href="{{ route('admin.user.index') }}">Users</a></li>
+    <li class="active"><a href="{{ route('admin.users.index') }}">Users</a></li>
 @endsection
 
 @section('title', 'Users')
@@ -18,8 +18,6 @@
                     </div>
                 </div>
                 <div class="panel-body">
-                    <p>Adds zebra-striping to any table row within <code>&lt;tbody&gt;</code> by adding the <code>.table-striped</code>
-                        to the base class</p>
                     <table class="table table-striped">
                         <thead>
                         <tr>
@@ -28,15 +26,20 @@
                             <th>Last Name</th>
                             <th>Email</th>
                             <th>Birthday</th>
+                            <th>Active</th>
                         </tr>
                         </thead>
                         <tbody>
                         @foreach($users as $user)
                             <tr>
-                                <td>1</td>
-                                <td>Mark</td>
-                                <td>Otto</td>
-                                <td>@mdo</td>
+                                <td>{{ $user->id }}</td>
+                                <td>{{ $user->firstname }}</td>
+                                <td>{{ $user->lastname }}</td>
+                                <td>{{ $user->email }}</td>
+                                <td>{{ $user->birthday }}</td>
+                                <td>
+                                    <input type='checkbox' data-toggle-position='right' data-toggle-color='#f00' />
+                                </td>
                             </tr>
                         @endforeach
                         </tbody>

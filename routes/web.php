@@ -30,8 +30,12 @@ Route::get('/test', function () {
 Route::get('/callback', 'SocialAuthController@callback');
 Route::get('/logout', 'SocialAuthController@logout');
 
-Route::group(['prefix' => 'admin', "as" => "admin."], function () {
+Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => 'admin'], function () {
     Route::get('/', function () {
-        return view('BO.index');
-    })->name('dashboard')->middleware('admin');
+        return view('BO.html.pages.index');
+    })->name('dashboard');
+
+    Route::group(['prefix' => 'user', 'as' => 'users.'], function () {
+        Route::get('/', 'Admin\UserController@index')->name('index');
+    });
 });

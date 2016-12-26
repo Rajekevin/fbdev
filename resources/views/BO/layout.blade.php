@@ -1,4 +1,4 @@
-@include('BO.partials.header')
+@include('BO.html.header')
 
 <div id="page-content">
     <div id='wrap'>
@@ -30,4 +30,4 @@
     </div>
 </div>
 
-@include('BO.partials.footer')
+@include('BO.html.footer')

@@ -17,10 +17,11 @@ var bowerDir = './resources/assets/bower/'
 
 elixir((mix) => {
     mix.sass('app.scss')
-    .sass('./resources/assets/BO/sass/main.scss', 'public/BO/css')
+    .sass('./resources/assets/BO/sass/styles.scss', 'public/BO/css')
     .scripts([
         bowerDir + 'jquery/dist/jquery.js',
-        bowerDir + 'bootstrap-sass/assets/javascripts/bootstrap.js'
+        bowerDir + 'bootstrap-sass/assets/javascripts/bootstrap.js',
+        bowerDir + 'toggler.js/js/toggler.js',
     ], 'public/BO/js/vendor.js')
     .copy(bowerDir + 'font-awesome/fonts/**/*', 'public/BO/fonts')
     .copy('./resources/assets/BO/img/**/*', 'public/BO/img')
