@@ -1,0 +1,129 @@
+@import url("https://fonts.googleapis.com/css?family=Kaushan+Script");
+body {
+  margin: 0;
+  color: #000;
+  font-family: 'Source Sans Pro Light'; }
+
+#container {
+  width: 90%;
+  margin: 0 auto; }
+
+.italic {
+  font-style: italic; }
+
+.bold {
+  font-weight: bold; }
+
+header {
+  height: 50vh;
+  display: flex;
+  align-items: center;
+  justify-content: center; }
+  header h1 {
+    z-index: 1;
+    font-family: 'Kaushan Script', cursive;
+    color: #000;
+    font-size: 2.5em; }
+  header div {
+    background-image: url("../../img/header.jpg");
+    background-size: cover;
+    height: 50vh;
+    width: 100%;
+    position: absolute;
+    filter: blur(2px); }
+
+#contest_participates_container {
+  margin-top: 2em;
+  text-align: center;
+  display: flex; }
+  #contest_participates_container > div {
+    flex: 1;
+    padding: 1em; }
+    #contest_participates_container > div h1 {
+      text-transform: uppercase;
+      border-top: 1px solid #000;
+      border-bottom: 1px solid #000;
+      margin: 0.2em 0;
+      font-size: 1.5em; }
+    #contest_participates_container > div:last-child h1 {
+      border-top: 1px solid #000;
+      border-bottom: 1px solid #000; }
+  #contest_participates_container #contest_container {
+    border: 2px solid #6db285; }
+  #contest_participates_container #participates_container {
+    color: #000;
+    background-color: #6db285; }
+  @media screen and (max-width: 650px) {
+    #contest_participates_container {
+      flex-direction: column; } }
+
+#vote_for_picture_title {
+  text-align: center;
+  text-transform: uppercase;
+  font-size: 1.5em;
+  margin: 1em 0; }
+
+#filter div {
+  display: inline-block;
+  text-align: center;
+  text-transform: uppercase;
+  width: 15%;
+  margin: 0.2em 0.5em;
+  padding: 0.5em;
+  border: 3px solid #6db285;
+  cursor: pointer; }
+  @media screen and (max-width: 800px) {
+    #filter div {
+      min-width: 130px; } }
+
+#images_container {
+  margin: 2em 0; }
+  #images_container .image_container {
+    width: 23%;
+    margin: 1%;
+    display: inline-block;
+    vertical-align: top; }
+    @media screen and (max-width: 900px) {
+      #images_container .image_container {
+        width: 31%; } }
+    @media screen and (max-width: 730px) {
+      #images_container .image_container {
+        width: 48%; } }
+    #images_container .image_container > a > img {
+      width: 100%;
+      height: auto; }
+    #images_container .image_container > div {
+      height: 1.5em;
+      padding: 0.5em;
+      display: flex;
+      border: 1px solid #c0c0c0;
+      border-top: none; }
+      #images_container .image_container > div > img {
+        cursor: pointer;
+        width: 24px;
+        height: 24px;
+        margin: 0 0.2em; }
+      #images_container .image_container > div > p {
+        flex: 1;
+        vertical-align: top;
+        margin: 0;
+        text-align: center;
+        text-transform: uppercase; }
+
+footer {
+  background-color: #6db285;
+  padding: 1em; }
+  footer #footer_container {
+    width: 90%;
+    margin: 0 auto; }
+    footer #footer_container p {
+      color: #000;
+      display: inline-block;
+      vertical-align: top;
+      text-transform: uppercase;
+      margin: 0.5em 2em; }
+    footer #footer_container img {
+      float: right;
+      width: 2.5em; }
+
+/*# sourceMappingURL=main.css.map */

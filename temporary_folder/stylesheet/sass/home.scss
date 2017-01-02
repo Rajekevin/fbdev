@@ -1,0 +1,144 @@
+header {
+
+	height: 50vh;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+	h1 {
+		z-index: 1;
+		font-family: 'Kaushan Script', cursive;
+		color: $text_color_footer;
+		font-size: 2.5em;
+	}
+
+	div {
+		background-image: url("../../img/header.jpg");
+		background-size: cover;
+		height: 50vh;
+		width: 100%;
+		position: absolute;
+		filter: blur(2px);
+	}
+}
+#contest_participates_container {
+	margin-top: 2em;
+	text-align: center;
+	display: flex;
+	&>div {
+		flex: 1;
+		padding: 1em;
+		h1 {
+			text-transform: uppercase; 
+			border-top: 1px solid #000;
+			border-bottom: 1px solid #000;
+			margin: 0.2em 0;
+			font-size: 1.5em;
+		}
+
+		&:last-child h1 {
+			border-top: 1px solid $text_color_footer;
+			border-bottom: 1px solid $text_color_footer;
+		}
+	}
+	#contest_container {
+		border: 2px solid $base_color;
+	}
+	#participates_container {
+		color: $text_color_footer;
+		background-color: $base_color;
+	}
+	@media screen and (max-width: 650px) {
+		flex-direction: column;
+	}
+}
+#vote_for_picture_title {
+	text-align: center;
+	text-transform: uppercase;
+	font-size: 1.5em;
+	margin: 1em 0;
+}
+#filter {
+	div {
+		display: inline-block;
+		text-align: center;
+		text-transform: uppercase;
+		width: 15%;
+		margin: 0.2em 0.5em;
+		padding: 0.5em;
+		border: 3px solid $base_color;
+		cursor: pointer;
+
+		@media screen and (max-width: 800px) {
+			min-width: 130px;
+		}
+	}
+}
+#images_container {
+
+	margin: 2em 0;
+	.image_container {
+
+		width: 23%;
+		margin: 1%;
+		display: inline-block;
+		vertical-align: top;
+
+		@media screen and (max-width: 900px) {
+			width: 31%;
+		}
+
+		@media screen and (max-width: 730px) {
+			width: 48%;
+		}
+
+		&>a>img {
+			width: 100%;
+			height: auto;
+		}
+		&>div {
+			height: 1.5em;
+			padding: 0.5em;
+			display: flex;
+			border: 1px solid #c0c0c0;
+			border-top: none;
+
+			&>img {
+				cursor: pointer;
+				width: 24px;
+				height: 24px;
+				margin: 0 0.2em;
+			}
+
+			&>p {
+				flex: 1;
+				vertical-align: top;
+				margin: 0;
+				text-align: center;
+				text-transform: uppercase;
+			}
+		}
+	}
+}
+footer {
+	background-color: $base_color;
+	padding: 1em;
+
+	#footer_container {
+		width: 90%;
+		margin: 0 auto;
+		p {
+			color: $text_color_footer;
+			display: inline-block;
+			vertical-align: top;
+			text-transform: uppercase;
+			margin: 0.5em 2em; 
+		}
+
+		img {
+			float: right;
+			width: 2.5em;
+
+		}
+	}
+}
