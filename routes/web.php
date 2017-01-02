@@ -11,6 +11,26 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+/**
+ * Routes used in front-end web pages
+ */
+Route::get('/', [
+    'as'        => 'root',
+    'uses'      => 'Frontend\HomeController@index'
+]);
+
+
+
+
+
+
+// @TODO : Ajouter un middleware de sécurité pour chaques routes AJAX
+/**
+ * Routes used for AJAX actions
+ */
+Route::get('/add/like', [
+    'uses'      => 'Frontend\UserController@addLike'
+]);
+Route::get('/add/picture', [
+    'uses'      => 'Frontend\UserController@addPicture'
+]);
