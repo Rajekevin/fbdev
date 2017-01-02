@@ -31,6 +31,9 @@ Route::get('/', [
 Route::get('/add/like', [
     'uses'      => 'Frontend\UserController@addLike'
 ]);
-Route::get('/add/picture', [
-    'uses'      => 'Frontend\UserController@addPicture'
+Route::get('/add/vote', [
+    'uses'      => 'Frontend\RateController@addVote'
+]);
+Route::get('/add/share', [
+    'uses'      => 'Frontend\SocialController@sharePicture'
 ]);
