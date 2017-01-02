@@ -1,5 +1,14 @@
-<div class="footer">
-    @include('frontend.html.footer.rules')
-    @include('frontend.html.footer.cgu')
-    @include('frontend.html.footer.social')
-</div>
+
+<footer>
+  <div id="footer_container">
+    <a href="">
+      <p>Règlement</p>
+    </a>
+    <a href="">
+      <p>CGU</p>
+    </a>
+    <a href="">
+      <img src="img/fb_logo.png">
+    </a>
+  </div>
+</footer>

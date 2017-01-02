@@ -21,7 +21,7 @@
 <body>
 @include('frontend.html.header')
 <div class="content">
-    <div class="container">
+    <div id="container">
         @yield('content')
     </div>
 </div>
