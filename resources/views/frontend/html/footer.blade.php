@@ -1,6 +1,5 @@
-
 <footer>
-  <div id="footer_container">
+  <div class="footer_container">
     <a href="">
       <p>Règlement</p>
     </a>

@@ -1,4 +1,4 @@
-<div id="filter">
+<div class="filter">
   <div>Plus aimé</div>
   <div>Date d'ajout</div>
   <div>A - Z</div>

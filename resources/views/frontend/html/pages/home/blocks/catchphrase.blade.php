@@ -1,1 +1,1 @@
-<h1 id="vote_for_picture_title">Votez pour la plus belle photo</h1>
+<h1 class="vote_for_picture_title">Votez pour la plus belle photo</h1>
