@@ -23,12 +23,6 @@ class SocialController extends Controller
      */
     public function sharePicture(Request $request)
     {
-        if(!$request->isXmlHttpRequest()) {
-            return false;
-        }
-
-        // @TODO : terminer
-
         return 'On partage la photo !';
     }
 

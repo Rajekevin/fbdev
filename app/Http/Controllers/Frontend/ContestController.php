@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Class UserController
+ * Class ContestController
  *
  * @author              Didier Youn <didier.youn@gmail.com>
  * @copyright           Copyright (c) 2016 DidYoun
@@ -13,16 +13,20 @@ namespace App\Http\Controllers\Frontend;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class UserController extends Controller
+class ContestController extends Controller
 {
-    /**
-     * Add like to current picture contest
-     *
-     * @param Request $request
-     * @return string
-     */
-    public function addLike (Request $request)
+    public function getPicturesByLike()
     {
-        return 'On ajoute un like !';
+        return('Filtre par like');
+    }
+
+    public function getPicturesByNewest()
+    {
+        return('Filtre par nouveauté');
+    }
+
+    public function getPicturesByAlphabetical()
+    {
+        return('Filtre par alphabet');
     }
 }

@@ -11,9 +11,12 @@ var FacebookApiExtension = function () {
      * Class used as button identifier
      * @type {string}
      */
-    var CLASS_BUTTON_ADD_LIKE   = '.btn-like';
-    var CLASS_BUTTON_ADD_SHARE  = '.btn-share';
-    var CLASS_BUTTON_ADD_VOTE   = '.btn-vote';
+    var CLASS_BUTTON_ADD_LIKE = '.btn-like';
+    var CLASS_BUTTON_ADD_SHARE = '.btn-share';
+    var CLASS_BUTTON_ADD_VOTE = '.btn-vote';
+    var CLASS_BUTTON_FILTER_LIKE = '.btn-filter-like';
+    var CLASS_BUTTON_FILTER_NEWEST = '.btn-filter-newest';
+    var CLASS_BUTTON_FILTER_ALPHABETICAL = '.btn-filter-alphabetical';
 
     /**
      * Mapping of actions and AJAX routes used
@@ -21,9 +24,22 @@ var FacebookApiExtension = function () {
      * @type {{like: string, share: string, picture: string}}
      */
     var PATH_ACTIONS = {
-        'like' : '/add/like',
-        'share' : '/add/share',
-        'vote' : '/add/vote',
+        'action' : {
+            'routes' : {
+                'like': '/add/like',
+                'share': '/add/share',
+                'vote': '/add/vote'
+            },
+            'method' : 'POST'
+        },
+        'sort' : {
+            'routes' : {
+                'by-like' : '/contest/likest',
+                'by-newest' : '/contest/newest',
+                'by-alphabetical' : '/contest/alphabetical'
+            },
+            'method' : 'GET'
+        }
     };
 
     /**
@@ -59,23 +75,33 @@ var FacebookApiExtension = function () {
      * Get data of target element need to send as object
      *
      * @param {object} element
-     * @param {string} action
+     * @param {object} context
      */
-    var getContextData = function(element, action) {
-        var parent = element.closest('.image'), elementId = parent.attr('data-id'), pattern = '^[a-zA-Z]*-(\\d*)$',
-            regex = new RegExp(pattern, 'g'), matches = regex.exec(elementId);
-        if (matches === null && typeof matches['index'] === 'undefined'
-        || typeof action === 'undefined') {
-            return false;
-        }
-        var targetId = parseInt(matches[1]), path = PATH_ACTIONS[action];
+    var getContextData = function(element, context) {
+        var contextKey = Object.keys(context)[0],
+            contextValue = context[contextKey],
+            data = {};
+
+        switch (contextKey) {
+            case 'action' :
+                var parent = element.closest('.image_container'),
+                    elementId = parent.attr('data-id'),
+                    pattern = '^[a-zA-Z]*-(\\d*)$',
+                    regex = new RegExp(pattern, 'g'),
+                    matches = regex.exec(elementId);
+
+                data.id = parseInt(matches[1]);
+                break;
+            case 'sort' :
+                break;
+            default :
+                return false;
+        };
 
         return {
-            url : path,
-            method : 'GET',
-            data : {
-                id : targetId
-            }
+            url : PATH_ACTIONS[contextKey]['routes'][contextValue],
+            method : PATH_ACTIONS[contextKey]['method'],
+            data : data
         }
     };
 
@@ -87,8 +113,7 @@ var FacebookApiExtension = function () {
      */
     var beforeAction = function(e) {
         var target = $j(e.target),
-            action = e.data.action,
-            options = getContextData(target, action);
+            options = getContextData(target, e.data);
         if (!options) {
             return false;
         }
@@ -106,6 +131,10 @@ var FacebookApiExtension = function () {
         $j(CLASS_BUTTON_ADD_LIKE).bind('click', { action : 'like'}, beforeAction);
         $j(CLASS_BUTTON_ADD_SHARE).bind('click', { action : 'share'}, beforeAction);
         $j(CLASS_BUTTON_ADD_VOTE).bind('click', { action : 'vote'}, beforeAction);
+
+        $j(CLASS_BUTTON_FILTER_LIKE).bind('click', { sort : 'by-like'}, beforeAction);
+        $j(CLASS_BUTTON_FILTER_NEWEST).bind('click', { sort : 'by-newest'}, beforeAction);
+        $j(CLASS_BUTTON_FILTER_ALPHABETICAL).bind('click', { sort : 'by-alphabetical'}, beforeAction);
     };
 
     /**

@@ -19,21 +19,25 @@ Route::get('/', [
     'uses'      => 'Frontend\HomeController@index'
 ]);
 
-
-
-
-
-
-// @TODO : Ajouter un middleware de sécurité pour chaques routes AJAX
 /**
  * Routes used for AJAX actions
  */
-Route::get('/add/like', [
+Route::post('/add/like', [
     'uses'      => 'Frontend\UserController@addLike'
-]);
-Route::get('/add/vote', [
+])->middleware('isAjax');
+Route::post('/add/vote', [
     'uses'      => 'Frontend\RateController@addVote'
-]);
-Route::get('/add/share', [
+])->middleware('isAjax');
+Route::post('/add/share', [
     'uses'      => 'Frontend\SocialController@sharePicture'
-]);
+])->middleware('isAjax');
+
+Route::get('/contest/likest', [
+    'uses'      => 'Frontend\ContestController@getPicturesByLike'
+])->middleware('isAjax');
+Route::get('/contest/newest', [
+    'uses'      => 'Frontend\ContestController@getPicturesByNewest'
+])->middleware('isAjax');
+Route::get('/contest/alphabetical', [
+    'uses'      => 'Frontend\ContestController@getPicturesByAlphabetical'
+])->middleware('isAjax');

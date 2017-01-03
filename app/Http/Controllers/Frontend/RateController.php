@@ -23,12 +23,6 @@ class RateController extends Controller
      */
     public function addVote(Request $request)
     {
-        if(!$request->isXmlHttpRequest()) {
-            return false;
-        }
-
-        // @TODO : terminer
-
         return 'On ajoute un vote !';
     }
 
