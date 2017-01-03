@@ -1,5 +1,7 @@
 import Vuex from 'vuex'
 
+const FILTER_STATES = ['moreRecent', 'lessRecent', 'moreLiked', 'lessLiked', 'lessRecent', 'random']
+
 const state = {
 	images: [
 		{ 
@@ -26,14 +28,39 @@ const state = {
 	filterState: 'random'
 }
 
+const filterLikes = (array, comparaison) => {
+	switch(comparaison) {
+		case 'more':
+			return array.sort((a, b) => {
+				return a.likes + b.likes
+			})
+			break
+		case 'less': 
+			return array.sort((a, b) => {
+				return a.likes - b.likes
+			})
+			break
+	}
+}
+
 const mutations = {
 	setFilterState: (state, newState) => {
   		state.filterState = newState
+  		switch (newState) {
+  			case 'moreLiked':
+  				state.images = filterLikes(state.images, 'more')
+  				break
+  			case 'lessLiked':
+  				state.images = filterLikes(state.images, 'less')
+  				break
+  		}
   	}
 }
 
 const getters = {
-  
+	images: state => {
+		return state.images
+	}
 }
 
 const actions = {

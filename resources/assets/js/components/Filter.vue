@@ -10,15 +10,7 @@
 	</div>
 </template>
 
-<!-- v-if="!state === 'moreLiked'" 
-v-if="state === 'moreLiked'" @
-v-if="!state === 'random'" @cl
-v-if="!state === 'moreRecent'"
-v-if="state === 'moreRecent'"  -->
-
 <script>
-
-const STATES = ['moreRecent', 'lessRecent', 'moreLiked', 'lessLiked', 'lessRecent', 'random']
 export default {
 	methods: {
 		filterMoreLike: function () {
