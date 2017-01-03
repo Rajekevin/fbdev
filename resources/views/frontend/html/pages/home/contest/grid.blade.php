@@ -1,5 +1,8 @@
 <div id="images_container">
-  @for($i = 0; $i < 10; $i++)
+  @for($i = 0; $i < 3; $i++)
+    @include('frontend.html.pages.home.contest.item.item', ['index' => $i])
+  @endfor
+  @for($i = 0; $i < 3; $i++)
     @include('frontend.html.pages.home.contest.item.item', ['index' => $i])
   @endfor
 </div>
