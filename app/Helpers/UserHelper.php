@@ -9,9 +9,41 @@
  */
 namespace App\Helpers;
 
+use Illuminate\Support\Facades\Auth as Auth;
+
 class UserHelper
 {
-    public static function test()
+    /**
+     * Get current user
+     *
+     * @return Auth|bool
+     */
+    public function getUser()
     {
+        if(!Auth::check()) {
+            return $this->getLoginFacebookRedirect();
+        }
+
+        return Auth::user();
+    }
+
+    public function isConnected()
+    {
+        return Auth::check() ? true : false;
+    }
+
+    public function getRedirectLoginUrl()
+    {
+        $fb = app(\SammyK\LaravelFacebookSdk\LaravelFacebookSdk::class);
+        $login_url = $fb->getLoginUrl(['email']);
+
+        return $login_url;
+    }
+
+    protected function getLoginFacebookRedirect()
+    {
+        $fb = app(\SammyK\LaravelFacebookSdk\LaravelFacebookSdk::class);
+        $login_url = $fb->getLoginUrl(['email']);
+        return $login_url;
     }
 }

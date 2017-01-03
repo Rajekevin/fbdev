@@ -164,12 +164,6 @@ return [
         Illuminate\View\ViewServiceProvider::class,
 
         /*
-         * Package Service Providers...
-         */
-        Vinkla\Facebook\FacebookServiceProvider::class,
-        //
-
-        /*
          * Application Service Providers...
          */
         App\Providers\AppServiceProvider::class,
@@ -182,6 +176,11 @@ return [
          * Define Helpers Service Provider
          */
         App\Providers\HelperServiceProvider::class,
+
+        /*
+         * Define Facebook SDK Service Provider
+         */
+        SammyK\LaravelFacebookSdk\LaravelFacebookSdkServiceProvider::class,
     ],
 
     /*
@@ -230,11 +229,12 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
 
-        'Facebook' => Vinkla\Facebook\Facades\Facebook::class,
-
         // Helpers
         'UserHelper' => App\Helpers\UserHelper::class,
-        'ContestHelper' => App\Helpers\ContestHelper::class
+        'ContestHelper' => App\Helpers\ContestHelper::class,
+
+        // Facebook
+        'Facebook' => SammyK\LaravelFacebookSdk\FacebookFacade::class
     ],
 
 ];

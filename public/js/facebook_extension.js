@@ -57,7 +57,6 @@ var FacebookApiExtension = function () {
             data : option.data || null,
             beforeSend : beforeSend,
             success : function (response) {
-                console.log('Ajax finish, return callback');
                 callback(response);
             }
         })
@@ -118,8 +117,18 @@ var FacebookApiExtension = function () {
             return false;
         }
         send(options, function(response) {
-            alert('Did : ' + response);
+            afterAction(response);
         });
+    };
+
+    /**
+     * After each actions
+     *
+     * @param response
+     * @return {boolean}
+     */
+    var afterAction = function(response) {
+        alert(response);
     };
 
     /**

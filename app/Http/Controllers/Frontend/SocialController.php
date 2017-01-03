@@ -10,20 +10,31 @@
  */
 namespace App\Http\Controllers\Frontend;
 
+use App\Helpers\ContestHelper;
+use App\Helpers\UserHelper;
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 
 class SocialController extends Controller
 {
     /**
      * Prevent add picture to current contest
      *
-     * @param Request $request
-     * @return bool|string
+     * @return bool
      */
-    public function sharePicture(Request $request)
+    public function sharePicture()
     {
-        return 'On partage la photo !';
+        $contestHelper = new ContestHelper();
+        $userHelper = new UserHelper();
+
+        if (!$userHelper->isConnected()) {
+           return $userHelper->getRedirectLoginUrl();
+        }
+
+        if (!$contestHelper->sharePictureToFacebookWall('1343434343')) {
+           return json_encode(['login' => false]);
+        }
+
+        return json_encode(['login' => true]);
     }
 
 }

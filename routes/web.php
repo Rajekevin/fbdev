@@ -18,6 +18,10 @@ Route::get('/', [
     'as'        => 'root',
     'uses'      => 'Frontend\HomeController@index'
 ]);
+Route::get('/facebook/callback', [
+    'as'        => 'login',
+    'uses'      => 'Frontend\UserController@facebookCallbackRedirect'
+]);
 
 /**
  * Routes used for AJAX actions
