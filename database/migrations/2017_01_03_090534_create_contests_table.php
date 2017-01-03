@@ -19,6 +19,7 @@ class CreateContestsTable extends Migration
             $table->string('short');
             $table->text('description');
             $table->string('end_message');
+            $table->text('reward');
             $table->string('cover');
             $table->string('color');
             $table->dateTime('begin_at');
