@@ -11,8 +11,9 @@
             <div class="options">
                 <div class="btn-toolbar">
                     @section('options')
+                        <label for="">Selectionner le concours que vous desirez :</label>
                         <select class="form-control">
-                            <option selected hidden>Current contest</option>
+                            <option selected>Actuel</option>
                             <option>1</option>
                             <option>2</option>
                             <option>3</option>

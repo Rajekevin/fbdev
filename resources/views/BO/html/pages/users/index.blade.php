@@ -1,18 +1,18 @@
 @extends('BO.layout')
 
 @section('breadcrumb')
-    <li><a href="{{ route('admin.dashboard') }}">Users</a></li>
-    <li class="active"><a href="{{ route('admin.users.index') }}">Users</a></li>
+    <li><a href="{{ route('admin.dashboard') }}">Accueil</a></li>
+    <li class="active"><a href="{{ route('admin.users.index') }}">Utilisateurs</a></li>
 @endsection
 
-@section('title', 'Users')
+@section('title', 'Utilisateurs')
 
 @section('content')
     <div class="row">
         <div class="col-xs-12">
             <div class="panel panel-primary">
                 <div class="panel-heading">
-                    <h4>Striped Tables</h4>
+                    <h4>Liste des utilisateurs</h4>
                     <div class="options">
 
                     </div>
@@ -22,11 +22,11 @@
                         <thead>
                         <tr>
                             <th>#</th>
-                            <th>First Name</th>
-                            <th>Last Name</th>
+                            <th>Prénom</th>
+                            <th>Nom</th>
                             <th>Email</th>
-                            <th>Birthday</th>
-                            <th>Active</th>
+                            <th>Date de naissance</th>
+                            <th>Actif</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -38,7 +38,9 @@
                                 <td>{{ $user->email }}</td>
                                 <td>{{ $user->birthday }}</td>
                                 <td>
-                                    <input type='checkbox' class="toggler" data-toggle-position='right' data-toggle-color='#f00' />
+                                    <input type="checkbox" class="js-switch toggler-activate"
+                                           data-id="{{ $user->id }}" data-token="{{ csrf_token() }}"
+                                            {{ $user->is_active ? 'checked' : '' }} />
                                 </td>
                             </tr>
                         @endforeach

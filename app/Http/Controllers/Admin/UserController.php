@@ -13,6 +13,12 @@ class UserController extends Controller
         $users = User::all();
 
         return view('BO.html.pages.users.index', ['users' => $users]);
+    }
 
+    public function toggleActive($id){
+        $user = User::findOrFail($id);
+
+        $user->is_active = !$user->is_active;
+        $user->save();
     }
 }

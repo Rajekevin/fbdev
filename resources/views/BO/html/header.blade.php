@@ -8,6 +8,7 @@
 
     <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600' rel='stylesheet' type='text/css'>
     @section('stylesheet')
+        <link rel="stylesheet" href="{{ asset('BO/css/vendors.css') }}">
         <link rel="stylesheet" href="{{ asset('BO/css/main.css') }}">
     @show
 
@@ -51,15 +52,13 @@
 </header>
 
 <div id="page-container">
-    <!-- BEGIN SIDEBAR -->
     <nav id="page-leftbar" role="navigation">
-        <!-- BEGIN SIDEBAR MENU -->
         <ul class="acc-menu" id="sidebar">
             <li {{ Route::currentRouteName() === 'admin.dashboard' ? "class=active" : '' }}>
-                <a href="{{ route('admin.dashboard') }}"><i class="fa fa-home"></i> <span>Dashboard</span></a>
+                <a href="{{ route('admin.dashboard') }}"><i class="fa fa-home"></i> <span>Accueil</span></a>
             </li>
             <li {{ Route::currentRouteName() === 'admin.users.index' ? 'class=active' : '' }}>
-                <a href="{{ route('admin.users.index') }}"><i class="fa fa-users"></i> <span>Users</span> </a>
+                <a href="{{ route('admin.users.index') }}"><i class="fa fa-users"></i> <span>Utilisateurs</span> </a>
             </li>
             <li {{ Route::currentRouteName() === 'admin.' ? 'class=active' : '' }}>
                 <a href="#"><i class="fa fa-file-picture-o"></i> <span>Photos</span></a>
@@ -75,5 +74,4 @@
                 <a href="#"><i class="fa fa-edit"></i> <span>Pages</span></a>
             </li>
         </ul>
-        <!-- END SIDEBAR MENU -->
     </nav>
