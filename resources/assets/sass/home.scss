@@ -89,6 +89,7 @@ header {
     &>a>img {
       width: 100%;
       height: auto;
+      vertical-align: bottom;
     }
     &>div {
       height: 1.5em;
@@ -116,16 +117,23 @@ header {
 footer {
   background-color: $base_color;
   padding: 1em;
+  
   .footer_container {
     width: 90%;
     margin: 0 auto;
-    p {
-      color: $text_color_footer;
-      display: inline-block;
-      vertical-align: top;
-      text-transform: uppercase;
-      margin: 0.5em 2em;
+
+    a {
+      text-decoration: none;
+
+      p {
+        color: $text_color_footer;
+        display: inline-block;
+        vertical-align: top;
+        text-transform: uppercase;
+        margin: 0.5em 2em;
+      }
     }
+
     img {
       float: right;
       width: 2.5em;
