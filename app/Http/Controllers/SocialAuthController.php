@@ -90,6 +90,7 @@ class SocialAuthController extends Controller
         } catch (FacebookSDKException $e) {
             dd($e->getMessage());
         }
+
         \Auth::login($user);
 
         return redirect('/')->with('message', 'Successfully logged in');

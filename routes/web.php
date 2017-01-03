@@ -19,23 +19,26 @@ Route::get('/test', function () {
     if (!auth()->check()) {
         return '<a href="' . Facebook::getLoginUrl() . '">Login</a>';
     } else {
-        if (Session::get('isAdmin'))
-            $msg = 'welcome admin';
-        else
-            $msg = 'welcome';
-        return $msg . '<br><a href="' . url('/logout') . '">Logout</a>';
+        if (!checkScope()) {
+            return '<a href="' . Facebook::getReRequestUrl(explode(",", env("FACEBOOK_SCOPE"))) . '">Rerequest permissions</a>';
+        } else {
+            if (Session::get('isAdmin'))
+                $msg = 'welcome admin';
+            else
+                $msg = 'welcome';
+            return $msg . '<br><a href="' . url('/logout') . '">Logout</a>';
+        }
     }
 });
 
 Route::get('/callback', 'SocialAuthController@callback');
 Route::get('/logout', 'SocialAuthController@logout');
 
-Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => 'admin'], function () {
-    Route::get('/', function () {
-        return view('BO.html.pages.index');
-    })->name('dashboard');
+Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => 'auth', 'admin'], function () {
+    Route::get('/', 'Admin\DefaultController@index')->name('dashboard');
 
-    Route::group(['prefix' => 'user', 'as' => 'users.'], function () {
+    Route::group(['prefix' => 'users', 'as' => 'users.'], function () {
         Route::get('/', 'Admin\UserController@index')->name('index');
+        Route::put('/activate/{id}', 'Admin\UserController@toggleActive')->name('activate');
     });
 });

@@ -18,6 +18,7 @@ class Administrator
     {
         if(\Session::get('isAdmin'))
             return $next($request);
+
         elseif (\Auth::check()) {
             $token = env('FACEBOOK_APP_ID') . '|' . env('FACEBOOK_SECRET');
             try {

@@ -39,7 +39,7 @@ return [
      *
      * https://developers.facebook.com/docs/facebook-login/permissions
      */
-    'default_scope' => ['email', 'user_birthday'],
+    'default_scope' => explode(',', env('FACEBOOK_SCOPE')),
 
     /*
      * The default endpoint that Facebook will redirect to after
