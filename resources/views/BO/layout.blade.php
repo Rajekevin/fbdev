@@ -20,7 +20,7 @@
                             <option>4</option>
                             <option>5</option>
                         </select>
-                    @show
+                    @endsection
                 </div>
             </div>
         </div>

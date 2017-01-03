@@ -16,12 +16,11 @@ class CreateContestsTable extends Migration
         Schema::create('contests', function (Blueprint $table) {
             $table->increments('id');
             $table->string('label');
-            $table->string('short');
+            $table->string('short')->nullable();
             $table->text('description');
-            $table->string('end_message');
             $table->text('reward');
-            $table->string('cover');
-            $table->string('color');
+            $table->string('cover')->nullable();
+            $table->string('color')->nullable();
             $table->dateTime('begin_at');
             $table->dateTime('end_at');
             $table->timestamps();

@@ -41,4 +41,6 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => 'auth', 'ad
         Route::get('/', 'Admin\UserController@index')->name('index');
         Route::put('/activate/{id}', 'Admin\UserController@toggleActive')->name('activate');
     });
+
+    Route::resource('contests', 'Admin\ContestController');
 });

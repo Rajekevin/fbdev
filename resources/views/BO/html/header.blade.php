@@ -2,17 +2,16 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Pardon Maman</title>
+    <title>@yield('meta-title', 'Pardon maman')</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600' rel='stylesheet' type='text/css'>
     @section('stylesheet')
-        <link rel="stylesheet" href="{{ asset('BO/css/vendors.css') }}">
+        {{--<link rel="stylesheet" href="{{ asset('BO/css/vendors.css') }}">--}}
         <link rel="stylesheet" href="{{ asset('BO/css/main.css') }}">
     @show
 
-    <script type="text/javascript" src="assets/js/less.js"></script>
+    {{--<script type="text/javascript" src="assets/js/less.js"></script>--}}
 </head>
 
 <header class="navbar navbar-inverse navbar-fixed-top" role="banner">
@@ -63,8 +62,8 @@
             <li {{ Route::currentRouteName() === 'admin.' ? 'class=active' : '' }}>
                 <a href="#"><i class="fa fa-file-picture-o"></i> <span>Photos</span></a>
             </li>
-            <li {{ Route::currentRouteName() === 'admin.' ? 'class=active' : '' }}>
-                <a href="#"><i class="fa fa-gavel"></i> <span>Contest</span></a>
+            <li {{ Route::currentRouteName() === 'admin.contests.index' ? 'class=active' : '' }}>
+                <a href="{{ route('admin.contests.index') }}"><i class="fa fa-gavel"></i> <span>Contest</span></a>
             </li>
             <li {{ Route::currentRouteName() === 'admin.' ? 'class=active' : '' }}>
                 <a href="#"><i class="fa fa-line-chart"></i> <span>Metrics</span></a>

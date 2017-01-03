@@ -2,46 +2,35 @@
 
 @section('breadcrumb')
     <li><a href="{{ route('admin.dashboard') }}">Accueil</a></li>
-    <li class="active"><a href="{{ route('admin.users.index') }}">Utilisateurs</a></li>
+    <li class="active"><a href="{{ route('admin.contests.index') }}">Concours</a></li>
 @endsection
 
-@section('title', 'Utilisateurs')
+@section('title', 'Concours')
 
 @section('content')
     <div class="row">
         <div class="col-xs-12">
             <div class="panel panel-primary">
                 <div class="panel-heading">
-                    <h4>Liste des utilisateurs</h4>
-                    <div class="options">
-
-                    </div>
+                    <h4>Liste des concours</h4>
                 </div>
                 <div class="panel-body">
                     <table class="table table-striped">
                         <thead>
                         <tr>
                             <th>#</th>
-                            <th>Prénom</th>
-                            <th>Nom</th>
-                            <th>Email</th>
-                            <th>Date de naissance</th>
-                            <th>Actif</th>
+                            <th>Label</th>
+                            <th>Débute le</th>
+                            <th>Fini le</th>
                         </tr>
                         </thead>
                         <tbody>
-                        @foreach($users as $user)
+                        @foreach($contests as $contest)
                             <tr>
-                                <td>{{ $user->id }}</td>
-                                <td>{{ $user->firstname }}</td>
-                                <td>{{ $user->lastname }}</td>
-                                <td>{{ $user->email }}</td>
-                                <td>{{ $user->birthday }}</td>
-                                <td>
-                                    <input type="checkbox" class="js-switch toggler-activate"
-                                           data-id="{{ $user->id }}" data-token="{{ csrf_token() }}"
-                                            {{ $user->is_active ? 'checked' : '' }} />
-                                </td>
+                                <td>{{ $contest->id }}</td>
+                                <td>{{ $contest->label }}</td>
+                                <td>{{ $contest->begin_at }}</td>
+                                <td>{{ $contest->end_at }}</td>
                             </tr>
                         @endforeach
                         </tbody>

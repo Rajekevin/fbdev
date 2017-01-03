@@ -3,6 +3,7 @@
   "dependencies": {
     "bootstrap-sass": "^3.3.7",
     "font-awesome": "^4.7.0",
-    "switchery": "^0.8.2"
+    "switchery": "^0.8.2",
+    "datepicker-moment": "^2.0.2"
   }
 }
