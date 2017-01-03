@@ -72,13 +72,18 @@ header {
     @media screen and (max-width: 800px) {
       min-width: 130px;
     }
+    @media screen and (max-width: 400px) {
+      width: 98%;
+      margin: 1% 0;
+      padding: 0.5em 0;
+    }
   }
 }
 
 .images_container {
   margin: 2em 0;
   .image_container {
-    width: 22%;
+    width: 23%;
     margin: 1%;
     display: inline-block;
     vertical-align: top;
@@ -87,6 +92,9 @@ header {
     }
     @media screen and (max-width: 730px) {
       width: 48%;
+    }
+    @media screen and (max-width: 470px) {
+      width: 98%;
     }
     &>a>img {
       width: 100%;
