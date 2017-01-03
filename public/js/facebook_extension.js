@@ -54,7 +54,7 @@ var FacebookApiExtension = function () {
         $j.ajax({
             url : option.url,
             method : option.method || 'GET',
-            data : option.data,
+            data : option.data || null,
             beforeSend : beforeSend,
             success : function (response) {
                 console.log('Ajax finish, return callback');

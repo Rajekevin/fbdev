@@ -178,6 +178,10 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
+        /*
+         * Define Helpers Service Provider
+         */
+        App\Providers\HelperServiceProvider::class,
     ],
 
     /*
@@ -227,6 +231,10 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
 
         'Facebook' => Vinkla\Facebook\Facades\Facebook::class,
+
+        // Helpers
+        'UserHelper' => App\Helpers\UserHelper::class,
+        'ContestHelper' => App\Helpers\ContestHelper::class
     ],
 
 ];
