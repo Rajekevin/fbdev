@@ -20,7 +20,7 @@ Route::get('/test', function () {
         return '<a href="' . Facebook::getLoginUrl() . '">Login</a>';
     } else {
         if (!checkScope()) {
-            return '<a href="' . Facebook::getReRequestUrl(explode(",", env("FACEBOOK_SCOPE"))) . '">Rerequest permissions</a>';
+            return '<a href="' . Facebook::getReRequestUrl(getDefaultScope()) . '">Rerequest permissions</a>';
         } else {
             if (Session::get('isAdmin'))
                 $msg = 'welcome admin';

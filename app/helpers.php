@@ -4,9 +4,10 @@
  * Check user's scope
  * @return bool true if granted
  */
-function checkScope() {
+function checkScope()
+{
     $isGranted = true;
-    $permissions = explode(',', env('FACEBOOK_SCOPE'));
+    $permissions = getDefaultScope();
     $scopes = \Facebook::get('/me/permissions', \Session::get('fb_user_access_token'))->getDecodedBody();
     $scopes = $scopes['data'];
 
@@ -22,4 +23,12 @@ function checkScope() {
     }
 
     return $isGranted;
+}
+
+/**
+ * @return array
+ */
+function getDefaultScope()
+{
+    return explode(",", env("FACEBOOK_SCOPE"));
 }
