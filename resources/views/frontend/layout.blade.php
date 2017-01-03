@@ -19,12 +19,9 @@
     @yield('js')
 </head>
 <body>
-@include('frontend.html.header')
-<div class="content">
-    <div id="container">
-        @yield('content')
-    </div>
+
+<div id="app">
+    <app></app>
 </div>
-@include('frontend.html.footer')
 </body>
 </html>
