@@ -11,7 +11,8 @@
     	
       	<img src="img/heart.png" alt="heart"> 
       	<img src="img/share.png" alt="share">
-      	<p>1 vote</p>
+      	<!-- // TODO: i18n  -->
+      	<p>{{ item.likes }} votes</p>
     </div>
 </div>
 </template>
@@ -19,14 +20,14 @@
 <script>
 export default {
 	props: ['item'],
-	data: function () {
-		return {
-			path: `img/${this.item.index}.jpg`
-		}
-	},
 	methods: {
 		like: () => {
 
+		}
+	},
+	computed: {
+		path: function () {
+			return  `img/${this.item.index}.jpg`
 		}
 	}
 }

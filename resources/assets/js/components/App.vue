@@ -29,6 +29,19 @@ export default {
 		Catchphrase,
 		FilterComponent,
 		Grid
+	},
+	methods: {
+		formatDate: date => {
+			const formatedDate = [
+				date.getFullYear(),
+				(uniqueChar(date.getMonth())) ? date.getMonth() + 1 : date.getMonth() + 1,
+				date.getDate()  	
+			].join('/') + ' ' + [
+				date.getHours(),
+				date.getMinutes(),
+				date.getSeconds()
+			].join(':')
+		}
 	}
 }
 </script>
