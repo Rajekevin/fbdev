@@ -1,10 +1,11 @@
-<div class="image" data-id="item-{{ $index }}">
-    <div class="image_container">
-        <img src="" alt="">
+<div class="image_container">
+    <a data-lightbox="image-{{ $index + 1 }}" href="img/{{ $index + 1 }}.jpg" style="color:#fff;" target="_blank">
+    <img src="img/{{ $index + 1 }}.jpg" alt=""/>
+    </a><!--
+      -->
+    <div>
+      <img src="img/heart.png" alt="heart">
+      <img src="img/share.png" alt="share">
+      <p>1 vote</p>
     </div>
-    <div class="actions">
-        <span class="btn btn-like">Like</span>
-        <span class="btn btn-share">Share</span>
-        <span class="btn btn-vote">Vote</span>
-    </div>
-</div>
+  </div>
