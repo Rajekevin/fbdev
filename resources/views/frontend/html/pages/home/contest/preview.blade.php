@@ -8,6 +8,8 @@
   <div class="participates_container">
     <h1>Participer</h1>
     <p>Gagne un tatouage en participant au concours photo !</p>
-    <img src=""/>
+    <a href="{{ route('participate') }}" class="btn-participate">
+      <img src="img/contest_participate.png">
+    </a>
   </div>
 </div>

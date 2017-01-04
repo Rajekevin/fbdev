@@ -15,8 +15,6 @@ header {
     height: 50vh;
     width: 100%;
     position: absolute;
-    top: 0;
-    left: 0;
     filter: blur(2px);
   }
 }
@@ -46,6 +44,10 @@ header {
   .participates_container {
     color: $text_color_footer;
     background-color: $base_color;
+
+    a.btn-participate img {
+      width: 6em;
+    }
   }
   @media screen and (max-width: 650px) {
     flex-direction: column;
@@ -72,18 +74,13 @@ header {
     @media screen and (max-width: 800px) {
       min-width: 130px;
     }
-    @media screen and (max-width: 400px) {
-      width: 98%;
-      margin: 1% 0;
-      padding: 0.5em 0;
-    }
   }
 }
 
 .images_container {
   margin: 2em 0;
   .image_container {
-    width: 23%;
+    width: 22%;
     margin: 1%;
     display: inline-block;
     vertical-align: top;
@@ -93,12 +90,10 @@ header {
     @media screen and (max-width: 730px) {
       width: 48%;
     }
-    @media screen and (max-width: 470px) {
-      width: 98%;
-    }
     &>a>img {
       width: 100%;
       height: auto;
+      vertical-align: bottom;
     }
     &>div {
       height: 1.5em;
@@ -126,16 +121,23 @@ header {
 footer {
   background-color: $base_color;
   padding: 1em;
+  
   .footer_container {
     width: 90%;
     margin: 0 auto;
-    p {
-      color: $text_color_footer;
-      display: inline-block;
-      vertical-align: top;
-      text-transform: uppercase;
-      margin: 0.5em 2em;
+
+    a {
+      text-decoration: none;
+
+      p {
+        color: $text_color_footer;
+        display: inline-block;
+        vertical-align: top;
+        text-transform: uppercase;
+        margin: 0.5em 2em;
+      }
     }
+
     img {
       float: right;
       width: 2.5em;
