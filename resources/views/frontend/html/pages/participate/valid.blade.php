@@ -1,3 +1,3 @@
 <div class="participate_valid">
-    <button disabled="true">Valider</button>
+    <button disabled>Valider</button>
 </div>
