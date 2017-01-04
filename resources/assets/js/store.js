@@ -215,6 +215,8 @@ const actions = {
 
 }
 
+state.images = filterRandom(state.images)
+
 let store = new Vuex.Store({
     state,
     mutations,

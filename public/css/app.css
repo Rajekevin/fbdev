@@ -18,6 +18,19 @@ body {
   font-weight: bold;
 }
 
+.no-select {
+  -webkit-touch-callout: none;
+  /* iOS Safari */
+  -webkit-user-select: none;
+  /* Chrome/Safari/Opera */
+  /* Konqueror */
+  -moz-user-select: none;
+  /* Firefox */
+  -ms-user-select: none;
+  /* Internet Explorer/Edge */
+  user-select: none;
+}
+
 header {
   height: 50vh;
   display: -webkit-box;
@@ -200,6 +213,22 @@ footer .footer_container img {
   border: 1px solid black;
   z-index: 9;
   position: fixed;
+}
+
+.modal-enter, .modal-leave-active {
+  -webkit-transform: translateY(50px);
+  transform: translateY(50px);
+  opacity: 0;
+}
+
+.modal-enter-active {
+  -webkit-transition: all .3s ease;
+  transition: all .3s ease;
+}
+
+.modal-leave-active {
+  -webkit-transition: all 0.4s cubic-bezier(0.26, -0.2, 1, 1);
+  transition: all 0.4s cubic-bezier(0.26, -0.2, 1, 1);
 }
 
 /*# sourceMappingURL=app.css.map */
