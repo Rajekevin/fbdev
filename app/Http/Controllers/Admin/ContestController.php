@@ -56,18 +56,30 @@ class ContestController extends Controller
                 ->withErrors($validator)
                 ->withInput();
         } else {
+            $beginAt = Date::parse($request->beginAt);
+            $endAt = Date::parse($request->endAt)->hour(23)->minute(59)->second(59);
             //TODO: check other contest date
+            $contests = Contest::all();
+            foreach ($contests as $contest) {
+                if ($beginAt > $contest->begin_at && $beginAt < $contest->end_at)
+                    return redirect()->route('admin.contests.create')->with('error', 'Le début empiète sur un concour');
+                if ($endAt > $contest->begin_at && $endAt < $contest->end_at)
+                    return redirect()->route('admin.contests.create')->with('error', 'La fin empiète sur un concour');
+                if($contest->begin_at > $beginAt && $contest->end_at < $endAt)
+                    return redirect()->route('admin.contests.create')->with('error', 'Le concours en englobe un autre');
+            }
+
             $contest = new Contest();
 
             $contest->label = $request->label;
             $contest->short = $request->short;
             $contest->description = $request->description;
             $contest->reward = $request->reward;
-            $contest->begin_at = Date::parse($request->beginAt);
-            $contest->end_at = Date::parse($request->endAt)->hour(23)->minute(59)->second(59);
+            $contest->begin_at = $beginAt;
+            $contest->end_at = $endAt;
 
             if ($request->hasFile('cover') && $request->file('cover')->isValid()) {
-                $contest->cover = $request->file('cover')->store('contest');
+
             }
 
             $contest->save();
@@ -84,7 +96,9 @@ class ContestController extends Controller
      */
     public function show($id)
     {
-        //
+        $contest = Contest::findOrFail($id);
+
+        return view('BO.html.pages.contests.show', ['contest' => $contest]);
     }
 
     /**
@@ -118,6 +132,6 @@ class ContestController extends Controller
      */
     public function destroy($id)
     {
-        //
+        return 'destroy';
     }
 }

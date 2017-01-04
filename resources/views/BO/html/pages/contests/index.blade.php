@@ -8,6 +8,10 @@
 @section('title', 'Concours')
 
 @section('content')
+    <a href="{{ route('admin.contests.create') }}" class="btn btn-default">
+        <i class="fa fa-plus"></i>Ajouter un concour
+    </a>
+    <br>
     <div class="row">
         <div class="col-xs-12">
             <div class="panel panel-primary">
@@ -31,6 +35,14 @@
                                 <td>{{ $contest->label }}</td>
                                 <td>{{ $contest->begin_at }}</td>
                                 <td>{{ $contest->end_at }}</td>
+                                <td>
+                                    <a href="{{ route('admin.contests.show', $contest->id) }}" class="btn btn-info"><i class="fa fa-eye"></i></a>
+                                    <form action="{{ route('admin.contests.destroy', $contest->id) }}" method="post">
+                                        {{ csrf_field() }}
+                                        {{ method_field('DELETE') }}
+                                        <button type="submit" class="btn btn-danger"><i class="fa fa-trash"></i></button>
+                                    </form>
+                                </td>
                             </tr>
                         @endforeach
                         </tbody>
