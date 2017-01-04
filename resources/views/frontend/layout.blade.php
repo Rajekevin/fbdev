@@ -16,12 +16,19 @@
     <!-- Javascript -->
     <script src="{{ asset('js/facebook_extension.js') }}" type="text/javascript"></script>
     <script src="{{ asset('js/app.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('js/myriam.js') }}" type="text/javascript"></script>
     @yield('js')
 </head>
 <body>
 
 <div id="app">
     <app></app>
+@include('frontend.html.header')
+<div class="content">
+    <div id="container">
+        <!--@include('frontend.html.pages.lightbox') -->
+        @yield('content')
+    </div>
 </div>
 </body>
 </html>
