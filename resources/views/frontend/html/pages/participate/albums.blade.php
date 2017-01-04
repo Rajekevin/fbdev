@@ -1,4 +1,4 @@
-<div class="participate-block-left">
+<div class="participate_block_left">
     <ul>
         <li>Album 1</li>
         <li>Album 2</li>

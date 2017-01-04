@@ -197,4 +197,106 @@ footer .footer_container img {
   width: 2.5em;
 }
 
+.participate_title {
+  background-color: #6db285;
+  color: #000;
+  padding: 1.5em 0;
+  margin-bottom: 1em;
+}
+
+.participate_title h1 {
+  text-align: center;
+  font-family: 'Kaushan Script', cursive;
+  margin: 0;
+}
+
+.participate_content .participate_block_left, .participate_content .participate_block_right {
+  display: inline-block;
+  vertical-align: top;
+  width: 30%;
+  margin: 1%;
+}
+
+.participate_content .participate_block_left ul {
+  padding: 0;
+  margin: 0;
+  list-style-type: none;
+}
+
+.participate_content .participate_block_left ul li {
+  text-align: center;
+}
+
+.participate_content .participate_block_right {
+  width: 65%;
+}
+
+.participate_content .participate_block_right .album_item {
+  display: inline-block;
+  vertical-align: top;
+  width: 13vw;
+  height: 13vw;
+  margin: 1%;
+  background-image: url("../../img/header.jpg");
+  background-size: cover;
+  background-position: center;
+}
+
+@media screen and (max-width: 1030px) {
+  .participate_content .participate_block_right .album_item {
+    width: 17.5vw;
+    height: 17.5vw;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .participate_content .participate_block_right .album_item {
+    width: 27vw;
+    height: 27vw;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .participate_content .participate_block_right .album_item {
+    width: 60vw;
+    height: 60vw;
+  }
+}
+
+.participate_content .participate_block_right .album_item:first-child {
+  background-image: url("../../img/1.jpg");
+}
+
+.participate_content .participate_block_right .album_item:hover {
+  cursor: pointer;
+}
+
+.participate_valid button {
+  float: right;
+  background-color: #6db285;
+  border: 2px solid #6db285;
+  border-radius: 10px;
+  width: 7em;
+  height: 2em;
+  font-weight: bold;
+  text-transform: uppercase;
+  opacity: 0.7;
+  -webkit-transition: opacity 0.2s;
+  transition: opacity 0.2s;
+}
+
+.participate_valid button[disabled]:hover {
+  opacity: 0.7;
+  cursor: mouse;
+}
+
+.participate_valid button:hover {
+  cursor: pointer;
+  opacity: 1;
+}
+
+footer {
+  margin-top: 2.5em;
+}
+
 /*# sourceMappingURL=app.css.map */
