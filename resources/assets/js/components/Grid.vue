@@ -1,6 +1,7 @@
 <template>
 	<div class="images_container">
 		{{ state }}
+		<button @click="openModalUploadPhoto()">Open Modal</button>
 		<div v-if="images.length <= maxNumberOfImageByChunk">
 			<item v-for="(item, index) in images" :item="item"></item>
 		</div>
@@ -45,6 +46,9 @@ export default {
 	methods: {
 		loadMore: function () {
 			this.currentChunk++
+		},
+		openModalUploadPhoto: function () {
+			this.$store.commit('setModalUploadPhoto', true)
 		}
 	}
 }

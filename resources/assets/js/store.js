@@ -54,7 +54,10 @@ const mutations = {
   				state.images = filterLikes(state.images, 'less')
   				break
   		}
-  	}
+    },
+    setModalUploadPhoto: (state, boolean) => {
+        state.modalUploadPhoto = boolean
+    }
 }
 
 const getters = {

@@ -190,4 +190,16 @@ footer .footer_container img {
   width: 2.5em;
 }
 
+.modal.modal_upload_photo {
+  top: 10vh;
+  background: white;
+  width: 80vw;
+  margin: 0px 5vw;
+  padding: 20px;
+  box-sizing: content-box;
+  border: 1px solid black;
+  z-index: 9;
+  position: fixed;
+}
+
 /*# sourceMappingURL=app.css.map */

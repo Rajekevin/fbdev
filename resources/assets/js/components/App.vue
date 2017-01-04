@@ -3,6 +3,7 @@
 	<div class="content">
 		<header-component></header-component>
 		<div id="container">
+			<modal-upload-photo v-if="modalUploadPhoto"></modal-upload-photo>
 			<contest-preview></contest-preview>
 			<catchphrase></catchphrase>
 			<filter-component></filter-component>
@@ -20,6 +21,7 @@ import ContestPreview from './ContestPreview.vue'
 import Catchphrase from './Catchphrase.vue'
 import FilterComponent from './Filter.vue'
 import Grid from './Grid.vue'
+import ModalUploadPhoto from './ModalUploadPhoto.vue'
 
 export default {
 	components: {
@@ -28,7 +30,13 @@ export default {
 		ContestPreview,
 		Catchphrase,
 		FilterComponent,
-		Grid
+		Grid,
+		ModalUploadPhoto
+	},
+	computed: {
+		modalUploadPhoto: function () {
+			return this.$store.state.modalUploadPhoto
+		}
 	},
 	methods: {
 		formatDate: date => {
