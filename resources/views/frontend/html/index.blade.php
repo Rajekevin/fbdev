@@ -2,10 +2,14 @@
 
 @section('title', 'Accueil')
 
-@include('frontend.html.header')
+@section('header')
+    @include('frontend.html.header')
+@endsection
 
 @section('content')
     @include('frontend.html.pages.home')
 @endsection
 
-@include('frontend.html.footer')
+@section('footer')
+    @include('frontend.html.footer')
+@endsection
