@@ -18,8 +18,8 @@ return [
      * your /.env file with your app ID and secret.
      */
     'facebook_config' => [
-        'app_id' => env('FACEBOOK_APP_ID'),
-        'app_secret' => env('FACEBOOK_SECRET'),
+        'app_id' => '1194715650563602',
+        'app_secret' => '9332b9583799c31eab62e52b80a4d573',
         'default_graph_version' => 'v2.8',
         //'enable_beta_mode' => true,
         //'http_client_handler' => 'guzzle',
@@ -39,11 +39,11 @@ return [
      *
      * https://developers.facebook.com/docs/facebook-login/permissions
      */
-    'default_scope' => getDefaultScope(),
+    'default_scope' => ['email', 'user_birthday'],
 
     /*
      * The default endpoint that Facebook will redirect to after
      * an authentication attempt.
      */
-    'default_redirect_uri' => '/callback',
+    'default_redirect_uri' => '/facebook/callback',
     ];

@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -47,6 +47,12 @@ class User extends Authenticatable
 
     public function pictures()
     {
-        return $this->hasMany('App\Picture');
+        return $this->hasMany('App\Models\Picture');
+    }
+
+    public static function createOrUpdateGraphNode($user)
+    {
+        dd('bonjour');
+        dd($user);
     }
 }
