@@ -21,7 +21,7 @@ Route::get('/', [
 Route::get('/participate', [
     'as'        => 'participate',
     'uses'      => 'Frontend\ParticipateController@index'
-]);
+])->middleware('askPermission');
 Route::get('/facebook/callback', [
     'as'        => 'login',
     'uses'      => 'Frontend\UserController@facebookCallbackRedirect'
