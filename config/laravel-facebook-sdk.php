@@ -19,7 +19,7 @@ return [
      */
     'facebook_config' => [
         'app_id' => env('FACEBOOK_APP_ID'),
-        'app_secret' => env('FACEBOOK_APP_SECRET'),
+        'app_secret' => env('FACEBOOK_SECRET'),
         'default_graph_version' => 'v2.8',
         //'enable_beta_mode' => true,
         //'http_client_handler' => 'guzzle',
@@ -39,11 +39,11 @@ return [
      *
      * https://developers.facebook.com/docs/facebook-login/permissions
      */
-    'default_scope' => [],
+    'default_scope' => getDefaultScope(),
 
     /*
      * The default endpoint that Facebook will redirect to after
      * an authentication attempt.
      */
-    'default_redirect_uri' => '/facebook/callback',
+    'default_redirect_uri' => '/callback',
     ];

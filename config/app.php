@@ -164,6 +164,15 @@ return [
         Illuminate\View\ViewServiceProvider::class,
 
         /*
+         * Package Service Providers...
+         */
+        Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
+        Jenssegers\Date\DateServiceProvider::class,
+        Barryvdh\Debugbar\ServiceProvider::class,
+        SammyK\LaravelFacebookSdk\LaravelFacebookSdkServiceProvider::class,
+        //
+
+        /*
          * Application Service Providers...
          */
         App\Providers\AppServiceProvider::class,
@@ -229,12 +238,13 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
 
+        'Date' => Jenssegers\Date\Date::class,
+        'Debugbar' => Barryvdh\Debugbar\Facade::class,
+        'Facebook' => SammyK\LaravelFacebookSdk\FacebookFacade::class,
+        
         // Helpers
         'UserHelper' => App\Helpers\UserHelper::class,
         'ContestHelper' => App\Helpers\ContestHelper::class,
-
-        // Facebook
-        'Facebook' => SammyK\LaravelFacebookSdk\FacebookFacade::class
     ],
 
 ];
