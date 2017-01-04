@@ -21,7 +21,7 @@ class User extends Authenticatable
 
     public function getRememberToken()
     {
-        return null; // not supported
+        return null;
     }
 
     public function setRememberToken($value)
@@ -40,9 +40,13 @@ class User extends Authenticatable
     public function setAttribute($key, $value)
     {
         $isRememberTokenAttribute = $key == $this->getRememberTokenName();
-        if (!$isRememberTokenAttribute)
-        {
+        if (!$isRememberTokenAttribute) {
             parent::setAttribute($key, $value);
         }
+    }
+
+    public function pictures()
+    {
+        return $this->hasMany('App\Picture');
     }
 }
