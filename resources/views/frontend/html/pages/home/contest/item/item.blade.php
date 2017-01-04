@@ -1,5 +1,5 @@
 <div class="image_container" data-id="image-{{ $index + 1 }}">
-    <a data-lightbox="image-1" href="img/{{ $index + 1 }}.jpg" style="color:#fff;" target="_blank">
+    <a data-lightbox="image-{{ $index + 1 }}" href="img/{{ $index + 1 }}.jpg" style="color:#fff;" target="_blank">
         <img src="img/{{ $index + 1 }}.jpg" alt=""/>
     </a>
     <div>
