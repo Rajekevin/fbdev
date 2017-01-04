@@ -128,7 +128,21 @@ var FacebookApiExtension = function () {
      * @return {boolean}
      */
     var afterAction = function(response) {
-        alert(response);
+        var response = JSON.parse(response);
+        if (response.error === false) {
+            console.log('Ajax finish');
+            return true;
+        }
+        if (typeof response.error.login !== 'undefined') {
+            var link = document.createElement('a');
+            link.href = response.error.login;
+            document.body.appendChild(link);
+            link.click();
+        }
+    };
+
+    var beforeParticipate = function () {
+
     };
 
     /**
@@ -144,6 +158,8 @@ var FacebookApiExtension = function () {
         $j(CLASS_BUTTON_FILTER_LIKE).bind('click', { sort : 'by-like'}, beforeAction);
         $j(CLASS_BUTTON_FILTER_NEWEST).bind('click', { sort : 'by-newest'}, beforeAction);
         $j(CLASS_BUTTON_FILTER_ALPHABETICAL).bind('click', { sort : 'by-alphabetical'}, beforeAction);
+
+        $j('.btn-participate').bind('click', beforeParticipate);
     };
 
     /**

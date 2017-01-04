@@ -8,18 +8,11 @@
  * @link                http://www.didier-youn.com
  */
 namespace App\Helpers;
-use SammyK\LaravelFacebookSdk\LaravelFacebookSdk as Facebook;
 
 class ContestHelper
 {
     public function sharePictureToFacebookWall($picture)
     {
-        $userHelper = new UserHelper();
-        $user = $userHelper->getUser();
-        $fb = app(\SammyK\LaravelFacebookSdk\LaravelFacebookSdk::class);
-        $login_url = $fb->getLoginUrl(['email']);
-
-        // TODO : Ajout du share
-        return $login_url;
+        return true;
     }
 }

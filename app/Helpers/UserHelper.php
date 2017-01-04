@@ -9,12 +9,20 @@
  */
 namespace App\Helpers;
 
-use Illuminate\Support\Facades\Auth as Auth;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
+use App\User;
 
 class UserHelper
 {
+    /**
+     * @var null $facebook
+     */
     protected $facebook;
 
+    /**
+     * UserHelper constructor.
+     */
     public function __construct()
     {
         $this->facebook = app(\SammyK\LaravelFacebookSdk\LaravelFacebookSdk::class);
@@ -23,39 +31,51 @@ class UserHelper
     /**
      * Get current user
      *
-     * @return Auth|bool
+     * @return bool
      */
-    public function getUser()
-    {
-        if(!Auth::check()) {
-            return $this->getLoginFacebookRedirect();
-        }
-
-        return Auth::user();
-    }
-
     public function isConnected()
     {
         return Auth::check() ? true : false;
     }
 
-    public function getRedirectLoginUrl()
+    /**
+     * @return bool|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
+    public function allowedFacebookCallback()
     {
-        $fb = app(\SammyK\LaravelFacebookSdk\LaravelFacebookSdk::class);
-        $login_url = $fb->getLoginUrl(['email']);
+        $fb = $this->facebook;
+        try {
+            $token = $fb->getAccessTokenFromRedirect();
+        } catch (\Facebook\Exceptions\FacebookSDKException $e) {
+            dd($e->getMessage());
+        }
+        if (!isset($token) || !$token) {
+            $helper = $fb->getRedirectLoginHelper();
+            if (!$helper->getError()) {
+                abort(403, 'Unauthorized action.');
+            }
+            return redirect('/');
+        }
+        if (!$token->isLongLived()) {
+            $oauth_client = $fb->getOAuth2Client();
+            try {
+                $token = $oauth_client->getLongLivedAccessToken($token);
+            } catch (\Facebook\Exceptions\FacebookSDKException $e) {
+                return redirect('/');
+            }
+        }
+        $fb->setDefaultAccessToken($token);
+        Session::put('fb_user_access_token', (string) $token);
+        try {
+            $response = $fb->get('/me?fields=id,name,email');
+        } catch (\Facebook\Exceptions\FacebookSDKException $e) {
+            dd($e->getMessage());
+        }
+        $facebook_user = $response->getGraphUser()->asArray();
+        if (!User::createOrUpdateGraphNode($facebook_user)) {
+            return redirect('/');
+        }
 
-        return $login_url;
-    }
-
-    public function checkPermission()
-    {
-        return false;
-    }
-
-    protected function getLoginFacebookRedirect()
-    {
-        $fb = app(\SammyK\LaravelFacebookSdk\LaravelFacebookSdk::class);
-        $login_url = $fb->getLoginUrl(['email']);
-        return $login_url;
+        return true;
     }
 }

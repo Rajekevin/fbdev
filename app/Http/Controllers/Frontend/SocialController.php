@@ -10,9 +10,11 @@
  */
 namespace App\Http\Controllers\Frontend;
 
+use App\Http\Controllers\Controller;
+
 use App\Helpers\ContestHelper;
 use App\Helpers\UserHelper;
-use App\Http\Controllers\Controller;
+use App\Helpers\FacebookHelper;
 
 class SocialController extends Controller
 {
@@ -25,16 +27,15 @@ class SocialController extends Controller
     {
         $contestHelper = new ContestHelper();
         $userHelper = new UserHelper();
-
+        $fbHelper = new FacebookHelper();
         if (!$userHelper->isConnected()) {
-           return $userHelper->getRedirectLoginUrl();
+           return json_encode(['error' => ['login' => $fbHelper->getRedirectLoginUrl('standard')]]);
         }
-
         if (!$contestHelper->sharePictureToFacebookWall('1343434343')) {
-           return json_encode(['login' => false]);
+            return json_encode(['error' => ['share' => true]]);
         }
 
-        return json_encode(['login' => true]);
+        return json_encode(['error' => false]);
     }
 
 }

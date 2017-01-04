@@ -24,7 +24,7 @@ Route::get('/participate', [
 ]);
 Route::get('/facebook/callback', [
     'as'        => 'login',
-    'uses'      => 'Frontend\UserController@facebookCallbackRedirect'
+    'uses'      => 'Frontend\UserController@facebookCallback'
 ]);
 
 /**

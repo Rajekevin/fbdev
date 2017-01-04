@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models;
+namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -8,15 +8,15 @@ class Picture extends Model
 {
     public function author()
     {
-        return $this->belongsTo('App\Models\User');
+        return $this->belongsTo('App\User');
     }
 
     public function contest()
     {
-        return $this->belongsTo('App\Models\Contest');
+        return $this->belongsTo('App\Contest');
     }
 
     public function votes(){
-        return $this->hasMany('App\Models\Vote');
+        return $this->hasMany('App\Vote');
     }
 }

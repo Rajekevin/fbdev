@@ -1,9 +1,10 @@
 <?php
 
-namespace App\Models;
+namespace App;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Support\Facades\Auth;
 
 /**
  * App\User
@@ -47,12 +48,22 @@ class User extends Authenticatable
 
     public function pictures()
     {
-        return $this->hasMany('App\Models\Picture');
+        return $this->hasMany('App\Picture');
     }
 
     public static function createOrUpdateGraphNode($user)
     {
-        dd('bonjour');
-        dd($user);
+        $user = User::updateOrCreate([
+           'provider_id' => $user['id'],
+           'firstname' => $user['name'],
+           'lastname' => 'test',
+           'birthday' => '1995-02-03 13:22:22',
+           'email' => $user['email'],
+           'is_active' => 1,
+        ]);
+
+        Auth::login($user);
+
+        return true;
     }
 }
