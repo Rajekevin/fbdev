@@ -21,6 +21,9 @@
 <body>
 @yield('header')
 <div class="content">
+<!--     <div id="app">
+        <app></app>
+    </div> -->
     <div id="container">
         @yield('content')
     </div>
