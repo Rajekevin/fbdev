@@ -1,0 +1,16 @@
+// v-enter: Starting state for enter. Applied before element is inserted, removed after one frame.
+// v-enter-active: Active and ending state for enter. Applied before element is inserted, removed when transition/animation finishes.
+// v-leave: Starting state for leave. Applied when leave transition is triggered, removed after one frame.
+// v-leave-active: Active and ending state for leave. Applied when leave transition is triggered, removed when the transition/animation finishes.
+
+.modal-enter, .modal-leave-active {
+  transform: translateY(50px);
+  opacity: 0;
+}
+.modal-enter-active {
+	transition: all .3s ease;
+}
+
+.modal-leave-active {
+	transition: all .4s cubic-bezier(0.26,-0.2, 1, 1);
+}
