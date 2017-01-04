@@ -18,6 +18,10 @@ Route::get('/', [
     'as'        => 'root',
     'uses'      => 'Frontend\HomeController@index'
 ]);
+Route::get('/participate', [
+    'as'        => 'participate',
+    'uses'      => 'Frontend\ParticipateController@index'
+]);
 Route::get('/facebook/callback', [
     'as'        => 'login',
     'uses'      => 'Frontend\UserController@facebookCallbackRedirect'
