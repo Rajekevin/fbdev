@@ -52,6 +52,9 @@ class Kernel extends HttpKernel
         'can' => \Illuminate\Auth\Middleware\Authorize::class,
         'guest' => \App\Http\Middleware\RedirectIfAuthenticated::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
-        'isAjax' => \App\Http\Middleware\isXmlHttpRequest::class
+
+        // Custom Middleware
+        'isAjax' => \App\Http\Middleware\isXmlHttpRequest::class,
+        'askPermission' => \App\Http\Middleware\askPermission::class
     ];
 }

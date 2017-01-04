@@ -12,11 +12,6 @@ use SammyK\LaravelFacebookSdk\LaravelFacebookSdk as Facebook;
 
 class ContestHelper
 {
-    public static function renderContestObjectData($contestId)
-    {
-        return ['test' => 'test'];
-    }
-
     public function sharePictureToFacebookWall($picture)
     {
         $userHelper = new UserHelper();

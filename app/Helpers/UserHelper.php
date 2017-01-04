@@ -13,6 +13,13 @@ use Illuminate\Support\Facades\Auth as Auth;
 
 class UserHelper
 {
+    protected $facebook;
+
+    public function __construct()
+    {
+        $this->facebook = app(\SammyK\LaravelFacebookSdk\LaravelFacebookSdk::class);
+    }
+
     /**
      * Get current user
      *
@@ -38,6 +45,11 @@ class UserHelper
         $login_url = $fb->getLoginUrl(['email']);
 
         return $login_url;
+    }
+
+    public function checkPermission()
+    {
+        return false;
     }
 
     protected function getLoginFacebookRedirect()
