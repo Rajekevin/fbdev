@@ -15,4 +15,8 @@ class Picture extends Model
     {
         return $this->belongsTo('App\Contest');
     }
+
+    public function votes(){
+        return $this->hasMany('App\Vote');
+    }
 }
