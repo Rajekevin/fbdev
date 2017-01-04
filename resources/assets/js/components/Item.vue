@@ -6,6 +6,7 @@
     <div>
     	<p>{{ item.created_at }}</p>
     	<p>{{ item.likes }}</p>
+    	<p>{{ item.title }}</p>
     </div>
     <div>
     	

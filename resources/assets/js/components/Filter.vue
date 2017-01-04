@@ -1,12 +1,12 @@
 <template>
 	<div class="filter">
-		{{ state }}
 	  	<div @click="filterMoreLike()">Plus aimé</div>
 	  	<div @click="filterLessLike()">Moins aimé</div>
 	  	<div @click="filterRandom()">Random</div>
 	  	<div @click="filterMoreRecent()">Plus récent</div>
 	  	<div @click="filterLessRecent()">Moin récent</div>
-	  	<div>A - Z</div>
+	  	<div @click="filterDescTitle()">A - Z</div>
+	  	<div @click="filterAscTitle()">Z - A</div>
 	</div>
 </template>
 
@@ -27,6 +27,12 @@ export default {
 		},
 		filterLessRecent: function () {
 			this.$store.commit('setFilterState', 'lessRecent')
+		},
+		filterAscTitle: function () {
+			this.$store.commit('setFilterState', 'titleAscendant')
+		},
+		filterDescTitle: function () {
+			this.$store.commit('setFilterState', 'titleDescendant')
 		}
 	},
 	computed: {

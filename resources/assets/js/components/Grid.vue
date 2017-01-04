@@ -1,12 +1,10 @@
 <template>
 	<div class="images_container">
-		{{ state }}
 		<button @click="openModalUploadPhoto()">Open Modal</button>
 		<div v-if="images.length <= maxNumberOfImageByChunk">
 			<item v-for="(item, index) in images" :item="item"></item>
 		</div>
 		<div v-else>
-			<p>CurrentChunk - {{ currentChunk }}</p>
 			<item v-for="(item, index) in chunkImages" :item="item"></item>
 			<p v-if="images.length > indexOfActualChunk">
 				<button @click="loadMore()">Load more</button>
