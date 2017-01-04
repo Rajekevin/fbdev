@@ -206,6 +206,7 @@ footer .footer_container img {
 .lightbox {
   position: absolute;
   left: 0;
+  top: 50vw;
   width: 90%;
   margin: 0 5%;
   z-index: 10000;
@@ -213,10 +214,14 @@ footer .footer_container img {
   border: 1px solid #000000;
 }
 
-.lightbox > img {
-  width: 45%;
-  height: 100%;
+.lightbox > .lb_image {
+  width: 43vw;
+  height: 39vw;
+  display: inline-block;
   vertical-align: middle;
+  background-image: url("../../img/1.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 .lightbox a img {
@@ -241,7 +246,7 @@ footer .footer_container img {
 .lightbox .lb_image_information {
   display: inline-block;
   vertical-align: top;
-  width: 50%;
+  width: 46%;
   margin: 2%;
 }
 

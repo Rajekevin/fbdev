@@ -11,16 +11,21 @@
 .lightbox {
   position: absolute;
   left: 0;
+  top: 50vw;
   width: 90%;
   margin: 0 5%;
   z-index: 10000;
   background-color: #ffffff;
   border: 1px solid #000000;
 
-  &>img {
-    width: 45%;
-    height: 100%;
+  &>.lb_image {
+    width: 43vw;
+    height: 39vw;
+    display: inline-block;
     vertical-align: middle;
+    background-image: url("../../img/1.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
   }
 
   a img {
@@ -47,7 +52,7 @@
   .lb_image_information {
     display: inline-block;
     vertical-align: top;
-    width: 50%;
+    width: 46%;
     margin: 2%;
 
     h3 {

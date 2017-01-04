@@ -1,7 +1,7 @@
 <div class="lightboxOverlay">
 </div>
 <div class="lightbox">
-	<img src="img/1.jpg">
+	<div class="lb_image"></div>
 	<div class="lb_image_information">
 		<img class="lb_close" src="img/close.png">
 		<h3>Tite de l'image</h3>
