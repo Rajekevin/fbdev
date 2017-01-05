@@ -36,6 +36,8 @@ class ParticipateController extends Controller
         /** @var array $albums */
         $albums = $userFbHelper->getAlbums();
 
-        return view('frontend.html.pages.participate', ['albums' => $albums]);
+        return view('frontend.html.pages.participate', [
+            'albums' => $albums
+        ]);
     }
 }

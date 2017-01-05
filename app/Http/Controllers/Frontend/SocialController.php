@@ -25,8 +25,11 @@ class SocialController extends Controller
      */
     public function sharePicture()
     {
+        /** @var \App\Helpers\ContestHelper $contestHelper */
         $contestHelper = new ContestHelper();
+        /** @var \App\Helpers\UserHelper $userHelper */
         $userHelper = new UserHelper();
+        /** @var \App\Helpers\FacebookHelper $fbHelper */
         $fbHelper = new FacebookHelper();
         if (!$userHelper->isConnected() || !$fbHelper->hasApplicationRegister()) {
            return json_encode(['error' => ['login' => $fbHelper->getRedirectLoginUrl('standard')]]);

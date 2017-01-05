@@ -25,8 +25,12 @@ class UserController extends Controller
         return 'lol';
     }
 
+    /**
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
     public function facebookCallback()
     {
+        /** @var \App\Helpers\FacebookHelper $fbHelper */
         $fbHelper = new FacebookHelper();
         if (!$fbHelper->callback()) {
             return redirect('/participate');
