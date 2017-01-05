@@ -1,5 +1,5 @@
 <template>
-	<div class="lightbox">
+	<div class="lightbox" @keyup.left="prev" @keyup.right="next" @keyup.esc="close" autofocus tabindex="1">
 		<div class="lb_image" :style="path"></div>
 		<div class="lb_image_information">
 			<img @click="close" class="lb_close" src="img/close.png">
@@ -18,14 +18,18 @@
 			</div>
 		</div>
 		<div class="lb-nav">
-			<a class="lb-prev" @click="prev()"></a>
-			<a class="lb-next" @click="next()"></a>
+      <!---->
+			<a class="lb-prev" v-on:keyup.left="prev" @click="prev"></a>
+			<a class="lb-next" @keyup.right="next"></a>
 		</div>
 	</div>
 </template>
 
 <script>
     export default {
+        mounted: function() {
+            document.querySelector('.lightbox').focus()
+        },
         computed: {
             path: function() {
                 return `background-image: url(img/${this.item.index}.jpg)`
