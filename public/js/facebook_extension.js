@@ -26,17 +26,17 @@ var FacebookApiExtension = function () {
     var PATH_ACTIONS = {
         'action' : {
             'routes' : {
-                'like': '/add/like',
-                'share': '/add/share',
-                'vote': '/add/vote'
+                'like': '/xhr/add/like',
+                'share': '/xhr/add/share',
+                'vote': '/xhr/add/vote'
             },
             'method' : 'POST'
         },
         'sort' : {
             'routes' : {
-                'by-like' : '/contest/likest',
-                'by-newest' : '/contest/newest',
-                'by-alphabetical' : '/contest/alphabetical'
+                'by-like' : '/xhr/contest/likest',
+                'by-newest' : '/xhr/contest/newest',
+                'by-alphabetical' : '/xhr/contest/alphabetical'
             },
             'method' : 'GET'
         }

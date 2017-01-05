@@ -1,51 +1,77 @@
 <?php
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
-
-/**
- * Routes used in front-end web pages
- */
+/*****************************************\
+*** Routes used in front-end web pages  ***
+\*****************************************/
 Route::get('/', [
     'as'        => 'root',
     'uses'      => 'Frontend\HomeController@index'
-]);
-Route::get('/participate', [
-    'as'        => 'participate',
-    'uses'      => 'Frontend\ParticipateController@index'
 ]);
 Route::get('/facebook/callback', [
     'as'        => 'login',
     'uses'      => 'Frontend\UserController@facebookCallback'
 ]);
-
 /**
- * Routes used for AJAX actions
+ *  Participate URLS
+ *  --> [GET] = participate/choose-your-picture
+ *  --> [GET] = participate/valid-your-picture
+ *  --> [POST] = participate/valid-your-picture
+ *
  */
-Route::post('/add/like', [
-    'uses'      => 'Frontend\UserController@addLike'
-])->middleware('isAjax');
-Route::post('/add/vote', [
-    'uses'      => 'Frontend\RateController@addVote'
-])->middleware('isAjax');
-Route::post('/add/share', [
-    'uses'      => 'Frontend\SocialController@sharePicture'
-])->middleware('isAjax');
+Route::group(['prefix' => 'participate'], function () {
+    Route::get('choose-your-picture', [
+        'as'        => 'participate',
+        'uses'      => 'Frontend\ParticipateController@index'
+    ]);
+    Route::get('valid-your-picture', [
+        'as'        => 'participate_valid_picture',
+        'uses'      => 'Frontend\ParticipateController@valid'
+    ]);
+    Route::post('valid-your-picture', [
+        'as'        => 'participate_valid_picture',
+        'uses'      => 'Frontend\ParticipateController@valid'
+    ]);
+});
 
-Route::get('/contest/likest', [
-    'uses'      => 'Frontend\ContestController@getPicturesByLike'
-])->middleware('isAjax');
-Route::get('/contest/newest', [
-    'uses'      => 'Frontend\ContestController@getPicturesByNewest'
-])->middleware('isAjax');
-Route::get('/contest/alphabetical', [
-    'uses'      => 'Frontend\ContestController@getPicturesByAlphabetical'
-])->middleware('isAjax');
+/*****************************************\
+****** Routes used for AJAX actions  ******
+\*****************************************/
+Route::group(['middleware' => 'isAjax', 'prefix' => 'xhr'], function () {
+    /**
+     *  USER ACTIONS
+     *  --> Vote / Like
+     *  --> Share picture
+     */
+    Route::post('/add/vote', [
+        'uses'      => 'Frontend\RateController@addVote'
+    ]);
+    Route::post('/add/share', [
+        'uses'      => 'Frontend\SocialController@sharePicture'
+    ]);
+    /**
+     *  USER SORT FONCTIONNALITY
+     *  --> Sort by more like
+     *  --> Sort by newest
+     *  --> Sort by alphabetical order
+     */
+    Route::get('/contest/likest', [
+        'uses'      => 'Frontend\ContestController@getPicturesByLike'
+    ]);
+    Route::get('/contest/newest', [
+        'uses'      => 'Frontend\ContestController@getPicturesByNewest'
+    ]);
+    Route::get('/contest/alphabetical', [
+        'uses'      => 'Frontend\ContestController@getPicturesByAlphabetical'
+    ]);
+    /**
+     *  AJAX REQUEST USED FOR FACEBOOK DATA
+     *  --> Get albums and photos as JSON
+     *  --> Get photos from album id as JSON
+     */
+    Route::get('/albums/all', [
+        'uses'      => 'Frontend\XhrController@getAlbums'
+    ]);
+    Route::get('/album/{id}/photos', [
+        'uses'      => 'Frontend\XhrController@getPhotoFromAlbumId'
+    ]);
+});

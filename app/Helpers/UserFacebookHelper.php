@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Class ${NAME}
+ * Class UserFacebookHelper
  *
  * @author              Didier Youn <didier.youn@gmail.com>
  * @copyright           Copyright (c) 2016 DidYoun
@@ -10,8 +10,6 @@
  */
 
 namespace App\Helpers;
-
-use App\Helpers\FacebookHelper;
 
 class UserFacebookHelper extends FacebookHelper
 {
