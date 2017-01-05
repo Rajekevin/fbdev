@@ -6,8 +6,8 @@
 
 @section('content')
     <div class="participate_content">
-        @include('frontend.html.pages.participate.albums')
-        @include('frontend.html.pages.participate.grid')
+        @include('frontend.html.pages.participate.albums', ['albums' => $albums])
+        @include('frontend.html.pages.participate.grid', ['albums' => $albums])
     </div>
     @include('frontend.html.pages.participate.valid')
 @endsection

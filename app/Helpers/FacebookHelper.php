@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Class FacebookHelper
  *
@@ -11,6 +12,7 @@ namespace App\Helpers;
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
+use App\User;
 
 class FacebookHelper
 {
@@ -23,6 +25,10 @@ class FacebookHelper
      */
     protected $user;
     /**
+     * @var array $userFacebookFields
+     */
+    protected $userFacebookFields = array('email', 'birthday', 'id', 'name', 'last_name', 'verified');
+    /**
      * @var array $defaultPermissions
      */
     protected $defaultPermissions = array('email', 'user_birthday');
@@ -30,6 +36,10 @@ class FacebookHelper
      * @var array $participatePermissions
      */
     protected $participatePermissions = array('user_photos', 'publish_actions');
+    /**
+     * @var null
+     */
+    protected $userAccessToken = null;
 
     /**
      * UserHelper constructor.
@@ -38,6 +48,7 @@ class FacebookHelper
     {
         $this->facebook = app(\SammyK\LaravelFacebookSdk\LaravelFacebookSdk::class);
         $this->user = Auth::user();
+        $this->userAccessToken = Session::get('fb_user_access_token');
     }
 
     /**
@@ -71,6 +82,63 @@ class FacebookHelper
         }
 
         return $this->facebook->getLoginUrl($permissions);
+    }
+
+    /**
+     * Check if the application is registered in user applications
+     *
+     * @return bool
+     */
+    public function hasApplicationRegister()
+    {
+        try {
+            $user = $this->facebook->get('/me', $this->userAccessToken);
+            if (isset($user)) {
+               return true;
+            }
+        } catch (\Facebook\Exceptions\FacebookResponseException $e) {
+            return false;
+        }
+    }
+
+    /**
+     * @return bool|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
+    public function callback()
+    {
+        try {
+            $token = $this->facebook->getAccessTokenFromRedirect();
+        } catch (\Facebook\Exceptions\FacebookSDKException $e) {
+            dd($e->getMessage());
+        }
+        if (!isset($token) || !$token) {
+            $helper = $this->facebook->getRedirectLoginHelper();
+            if (!$helper->getError()) {
+                abort(403, 'Unauthorized action.');
+            }
+            return redirect('/');
+        }
+        if (!$token->isLongLived()) {
+            $oauth_client = $this->facebook->getOAuth2Client();
+            try {
+                $token = $oauth_client->getLongLivedAccessToken($token);
+            } catch (\Facebook\Exceptions\FacebookSDKException $e) {
+                return redirect('/');
+            }
+        }
+        $this->facebook->setDefaultAccessToken($token);
+        Session::put('fb_user_access_token', (string) $token);
+        try {
+            $response = $this->facebook->get('/me?fields=' . implode(',', $this->userFacebookFields));
+        } catch (\Facebook\Exceptions\FacebookSDKException $e) {
+            dd($e->getMessage());
+        }
+        $facebook_user = $response->getDecodedBody();
+        if (!User::createOrUpdateGraphNode($facebook_user)) {
+            return redirect('/');
+        }
+
+        return true;
     }
 
     /**

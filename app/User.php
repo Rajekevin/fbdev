@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Helpers\UserHelper;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Support\Facades\Auth;
@@ -51,19 +52,29 @@ class User extends Authenticatable
         return $this->hasMany('App\Picture');
     }
 
-    public static function createOrUpdateGraphNode($user)
+    public static function createOrUpdateGraphNode($facebookUser)
     {
-        $user = User::updateOrCreate([
-           'provider_id' => $user['id'],
-           'firstname' => $user['name'],
-           'lastname' => 'test',
-           'birthday' => '1995-02-03 13:22:22',
-           'email' => $user['email'],
-           'is_active' => 1,
-        ]);
+        $userHelper = new UserHelper();
+        $user = User::where('provider_id', $facebookUser['id'])->first();
+        if ($user) {
+            $user->email = $facebookUser['email'];
+            $user->firstname = $facebookUser['name'];
+            $user->birthday = $userHelper->getUserBirthday($facebookUser['birthday']);
+            $user->lastname = $facebookUser['last_name'];
+            $user->is_active = $facebookUser['verified'];
+            $user->save();
+        } else {
+            $user = User::create([
+                'provider_id' => $facebookUser['id'],
+                'firstname' => $facebookUser['name'],
+                'lastname' => $facebookUser['last_name'],
+                'birthday' => $userHelper->getUserBirthday($facebookUser['birthday']),
+                'email' => $facebookUser['email'],
+                'is_active' => $facebookUser['verified'],
+            ]);
+        }
 
         Auth::login($user);
-
         return true;
     }
 }

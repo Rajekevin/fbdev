@@ -28,7 +28,7 @@ class SocialController extends Controller
         $contestHelper = new ContestHelper();
         $userHelper = new UserHelper();
         $fbHelper = new FacebookHelper();
-        if (!$userHelper->isConnected()) {
+        if (!$userHelper->isConnected() || !$fbHelper->hasApplicationRegister()) {
            return json_encode(['error' => ['login' => $fbHelper->getRedirectLoginUrl('standard')]]);
         }
         if (!$contestHelper->sharePictureToFacebookWall('1343434343')) {

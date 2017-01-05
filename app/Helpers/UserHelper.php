@@ -10,8 +10,7 @@
 namespace App\Helpers;
 
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Session;
-use App\User;
+use Jenssegers\Date\Date;
 
 class UserHelper
 {
@@ -39,43 +38,17 @@ class UserHelper
     }
 
     /**
-     * @return bool|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     * Get user birthday
+     *
+     * @param $birthday
+     * @return bool|Date
      */
-    public function allowedFacebookCallback()
+    public function getUserBirthday($birthday)
     {
-        $fb = $this->facebook;
-        try {
-            $token = $fb->getAccessTokenFromRedirect();
-        } catch (\Facebook\Exceptions\FacebookSDKException $e) {
-            dd($e->getMessage());
-        }
-        if (!isset($token) || !$token) {
-            $helper = $fb->getRedirectLoginHelper();
-            if (!$helper->getError()) {
-                abort(403, 'Unauthorized action.');
-            }
-            return redirect('/');
-        }
-        if (!$token->isLongLived()) {
-            $oauth_client = $fb->getOAuth2Client();
-            try {
-                $token = $oauth_client->getLongLivedAccessToken($token);
-            } catch (\Facebook\Exceptions\FacebookSDKException $e) {
-                return redirect('/');
-            }
-        }
-        $fb->setDefaultAccessToken($token);
-        Session::put('fb_user_access_token', (string) $token);
-        try {
-            $response = $fb->get('/me?fields=id,name,email');
-        } catch (\Facebook\Exceptions\FacebookSDKException $e) {
-            dd($e->getMessage());
-        }
-        $facebook_user = $response->getGraphUser()->asArray();
-        if (!User::createOrUpdateGraphNode($facebook_user)) {
-            return redirect('/');
+        if (!isset($birthday)) {
+            return false;
         }
 
-        return true;
+        return new Date($birthday);
     }
 }

@@ -11,7 +11,7 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
-use App\Helpers\UserHelper;
+use App\Helpers\FacebookHelper;
 
 class UserController extends Controller
 {
@@ -27,8 +27,8 @@ class UserController extends Controller
 
     public function facebookCallback()
     {
-        $userHelper = new UserHelper();
-        if (!$userHelper->allowedFacebookCallback()) {
+        $fbHelper = new FacebookHelper();
+        if (!$fbHelper->callback()) {
             return redirect('/participate');
         }
 

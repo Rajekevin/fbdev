@@ -1,5 +1,9 @@
 <div class="participate_block_right">
-    @for($i = 0; $i < 10; $i++)
-        @include('frontend.html.pages.participate.items.item')
-    @endfor
+    @if($albums)
+        @foreach($albums as $album)
+            @foreach($album['photos'] as $photo)
+                @include('frontend.html.pages.participate.items.item', ['item' => $photo])
+            @endforeach
+        @endforeach
+    @endif
 </div>
