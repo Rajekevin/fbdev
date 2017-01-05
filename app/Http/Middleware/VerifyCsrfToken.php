@@ -12,7 +12,6 @@ class VerifyCsrfToken extends BaseVerifier
      * @var array
      */
     protected $except = [
-        '/xhr/add/like',
-        '/xhr/add/share'
+        '/participate/valid-your-picture'
     ];
 }

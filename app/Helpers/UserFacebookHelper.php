@@ -27,11 +27,14 @@ class UserFacebookHelper extends FacebookHelper
     {
         /** @var array $albumsPhotoData */
         $albumsPhotoData = [];
+        /** @var array $albums */
         $albums = $this->facebook->get('/me/albums', $this->userAccessToken)->getDecodedBody();
+        /** @var array $album */
         foreach ($albums['data'] as $album) {
             if (!isset($album['id'])) {
                 continue;
             }
+            /** @var array $photosAlbum */
             $photosAlbum = $this->getPhotosFromAlbumId($album['id']);
             $albumsPhotoData[] = [
                 'id' => $album['id'],

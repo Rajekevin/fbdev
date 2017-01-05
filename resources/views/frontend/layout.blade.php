@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="csrf-token" id="csrf-token" content="{{ csrf_token() }}">
     <title>Pardon Maman | @yield('title')</title>
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="{{ asset('favicon.ico') }}" />
@@ -21,9 +22,6 @@
 <body>
 @yield('header')
 <div class="content">
-<!--     <div id="app">
-        <app></app>
-    </div> -->
     <div id="container">
         @yield('content')
     </div>

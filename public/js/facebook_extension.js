@@ -6,7 +6,10 @@
 var FacebookApiExtension = function () {
     /** Init variables used in the module helper */
     var $j = jQuery.noConflict();
-
+    /**
+     * CSRF TOKEN need for ajax call
+     */
+    var CSRF_TOKEN = $j('meta[name="csrf-token"]').attr('content');
     /**
      * Class used as button identifier
      * @type {string}
@@ -53,6 +56,9 @@ var FacebookApiExtension = function () {
     var send = function(option, callback) {
         $j.ajax({
             url : option.url,
+            headers : {
+                'X-CSRF-TOKEN': CSRF_TOKEN
+            },
             method : option.method || 'GET',
             data : option.data || null,
             beforeSend : beforeSend,

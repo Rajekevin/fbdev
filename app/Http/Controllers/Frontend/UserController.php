@@ -16,16 +16,6 @@ use App\Helpers\FacebookHelper;
 class UserController extends Controller
 {
     /**
-     * Add like to current picture contest
-     *
-     * @return string
-     */
-    public function login ()
-    {
-        return 'lol';
-    }
-
-    /**
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
     public function facebookCallback()
