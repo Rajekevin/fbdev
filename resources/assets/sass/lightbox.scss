@@ -9,9 +9,9 @@
 }
 
 .lightbox {
-  position: absolute;
+  position: fixed;
   left: 0;
-  top: 50vw;
+  top: 0;
   width: 90%;
   margin: 0 5%;
   z-index: 10000;
@@ -66,13 +66,13 @@
     .lb_bottom {
       position: absolute;
       bottom: 0.4em;
-    
+      
       &>img {
-          cursor: pointer;
-          width: 24px;
-          height: 24px;
-          margin: 0 0.2em;
-        }
+        cursor: pointer;
+        width: 24px;
+        height: 24px;
+        margin: 0 0.2em;
+      }
       &>p {
         margin: 0;
         margin-left: 1em;

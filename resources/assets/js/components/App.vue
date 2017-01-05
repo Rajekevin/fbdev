@@ -4,6 +4,7 @@
 		<header-component></header-component>
 		<div id="container">
 			<modal-upload-photo v-if="modalUploadPhoto"></modal-upload-photo>
+			<lightbox v-if="lightbox"></lightbox>
 			<contest-preview></contest-preview>
 			<catchphrase></catchphrase>
 			<filter-component></filter-component>
@@ -22,6 +23,7 @@ import Catchphrase from './Catchphrase.vue'
 import FilterComponent from './Filter.vue'
 import Grid from './Grid.vue'
 import ModalUploadPhoto from './ModalUploadPhoto.vue'
+import Lightbox from './Lightbox.vue'
 
 export default {
 	components: {
@@ -31,11 +33,15 @@ export default {
 		Catchphrase,
 		FilterComponent,
 		Grid,
-		ModalUploadPhoto
+		ModalUploadPhoto,
+		Lightbox
 	},
 	computed: {
 		modalUploadPhoto: function () {
 			return this.$store.state.modalUploadPhoto
+		},
+		lightbox: function () {
+			return this.$store.state.lightbox
 		}
 	},
 	methods: {

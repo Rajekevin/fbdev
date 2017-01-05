@@ -24,6 +24,7 @@
 <div id="app">
     <app></app>
 @include('frontend.html.header')
+
 <div class="content">
     <div id="container">
         <!--@include('frontend.html.pages.lightbox') -->

@@ -1,6 +1,6 @@
 <template>
 <div class="image_container">
-    <a style="color:#fff;">
+    <a @click="open()" style="color:#fff;">
     	<img :src="path" alt=""/>
     </a>
     <div>
@@ -19,17 +19,20 @@
 </template>
 
 <script>
-export default {
-	props: ['item'],
-	methods: {
-		like: () => {
-
-		}
-	},
-	computed: {
-		path: function () {
-			return  `img/${this.item.index}.jpg`
-		}
-	}
-}
+    export default {
+        props: ['item'],
+        methods: {
+            open: function() {
+                this.$store.commit('setLightbox', {
+                    boolean: true,
+                    id: this.item.id
+                })
+            }
+        },
+        computed: {
+            path: function() {
+                return `img/${this.item.index}.jpg`
+            }
+        }
+    }
 </script>
