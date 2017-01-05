@@ -30,8 +30,8 @@ const state = {
     ],
     modalUploadPhoto: false,
     filterState: 'random',
-    lightbox: true,
-    lightboxId: '1'
+    lightbox: false,
+    lightboxId: ''
 }
 
 const filterLikes = (array, comparaison) => {

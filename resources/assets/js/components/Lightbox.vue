@@ -1,28 +1,30 @@
 <template>
-	<div class="lightbox" @keyup.left="prev" @keyup.right="next" @keyup.esc="close" autofocus tabindex="1">
-		<div class="lb_image" :style="path"></div>
-		<div class="lb_image_information">
-			<img @click="close" class="lb_close" src="img/close.png">
-			<h3>{{ item.title }}</h3>
-			{{ index }}
-			<p class="bold">{{ item.description }}</p>
-			<div class="lb_optional_information">
-				<p>Nom du photographe : Champs optionnel</p>
-				<p>Ville où la photo a été prise : Optionnel</p>
-			</div>
-			<p class="bold">Bloc de commentaire</p>
-			<div class="lb_bottom">
-				<img src="img/heart.png" alt="heart" class="btn-like">
-				<img src="img/share.png" alt="share" class="btn-share">
-				<p>Ajouter un commentaire</p>
-			</div>
-		</div>
-		<div class="lb-nav">
-      <!---->
-			<a class="lb-prev" v-on:keyup.left="prev" @click="prev"></a>
-			<a class="lb-next" @keyup.right="next"></a>
-		</div>
-	</div>
+  <transition name="modal">
+    <div class="lightbox" @keyup.left="prev" @keyup.right="next" @keyup.esc="close" autofocus tabindex="1">
+      <div class="lb_image" :style="path"></div>
+      <div class="lb_image_information">
+        <img @click="close" class="lb_close" src="img/close.png">
+        <h3>{{ item.title }}</h3>
+        {{ index }}
+        <p class="bold">{{ item.description }}</p>
+        <div class="lb_optional_information">
+          <p>Nom du photographe : Champs optionnel</p>
+          <p>Ville où la photo a été prise : Optionnel</p>
+        </div>
+        <p class="bold">Bloc de commentaire</p>
+        <div class="lb_bottom">
+          <img src="img/heart.png" alt="heart" class="btn-like">
+          <img src="img/share.png" alt="share" class="btn-share">
+          <p>Ajouter un commentaire</p>
+        </div>
+      </div>
+      <div class="lb-nav">
+        <!---->
+        <a class="lb-prev" v-on:keyup.left="prev" @click="prev"></a>
+        <a class="lb-next" @keyup.right="next"></a>
+      </div>
+    </div>
+  </transition>
 </template>
 
 <script>
