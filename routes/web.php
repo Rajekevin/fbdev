@@ -18,7 +18,7 @@ Route::get('/facebook/callback', [
  *  --> [POST] = participate/valid-your-picture
  *
  */
-Route::group(['prefix' => 'participate'], function () {
+Route::group(['middleware' => 'canForward', 'prefix' => 'participate'], function () {
     Route::get('choose-your-picture', [
         'as'        => 'participate',
         'uses'      => 'Frontend\ParticipateController@index'
@@ -29,7 +29,7 @@ Route::group(['prefix' => 'participate'], function () {
     ]);
     Route::post('valid-your-picture', [
         'as'        => 'participate_valid_picture',
-        'uses'      => 'Frontend\ParticipateController@valid'
+        'uses'      => 'Frontend\ParticipateController@nextStep'
     ]);
 });
 

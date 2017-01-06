@@ -9,10 +9,26 @@
  */
 namespace App\Helpers;
 
+use App\Contest;
+use Illuminate\Support\Facades\Session;
+
 class ContestHelper
 {
-    public function sharePictureToFacebookWall($picture)
+    /**
+     * Add photo to contest
+     *
+     * @param string|null $pictureId
+     * @return bool
+     */
+    public function addPhotoToCurrentContest($pictureId)
     {
+        $pictureId = "156454";
+        /** @var \App\Contest $contest */
+        $contest = new Contest();
+        if (!isset($pictureId) || !$contest->addPictureToCurrentContest($pictureId)) {
+            return false;
+        }
+
         return true;
     }
 }

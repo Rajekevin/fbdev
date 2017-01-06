@@ -10,4 +10,21 @@ class Contest extends Model
     {
         return $this->hasMany('App\Picture');
     }
+
+    public function addPictureToCurrentContest($pictureId)
+    {
+        $contest = $this->_getCurrentContest();
+
+    }
+
+    protected function _getCurrentContest()
+    {
+        /** @var \App\Contest $contest */
+        $contest = Contest::select('id')->where('short', 'Concours')->first();
+        if (!$contest) {
+            return false;
+        }
+
+        return $contest->id;
+    }
 }

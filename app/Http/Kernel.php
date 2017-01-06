@@ -56,6 +56,7 @@ class Kernel extends HttpKernel
         'admin' => \App\Http\Middleware\Administrator::class,
 
         // Front Middleware
-        'isAjax' => \App\Http\Middleware\isXmlHttpRequest::class
+        'isAjax' => \App\Http\Middleware\isXmlHttpRequest::class,
+        'canForward' => \App\Http\Middleware\canForward::class
     ];
 }
