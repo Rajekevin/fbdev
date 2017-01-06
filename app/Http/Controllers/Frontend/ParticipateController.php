@@ -10,18 +10,21 @@
  */
 namespace App\Http\Controllers\Frontend;
 
-use App\Helpers\FunnelHelper;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-use App\Helpers\UserHelper;
-use App\Helpers\FacebookHelper;
 use App\Helpers\UserFacebookHelper;
-use App\Helpers\ContestHelper;
+use App\Helpers\FunnelHelper;
 
 class ParticipateController extends Controller
 {
-    public function index()
+    /**
+     * Load choose pictures view
+     *
+     * @url : /participate/choose-your-picture
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function choose()
     {
         /** @var \App\Helpers\UserFacebookHelper $userFbHelper */
         $userFbHelper = new UserFacebookHelper();
@@ -35,6 +38,12 @@ class ParticipateController extends Controller
         return view('frontend.html.pages.funnel.choose', ['albums' => $albums]);
     }
 
+    /**
+     * Load valid picture view
+     *
+     * @url : /participate/valid-your-picture
+     * @return bool|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function valid()
     {
         /** @var \App\Helpers\FunnelHelper $funnelHelper */
@@ -44,5 +53,16 @@ class ParticipateController extends Controller
             return false;
         }
         return view('frontend.html.pages.funnel.validate', ['tmp_photo' => $pictureId]);
+    }
+
+    /**
+     * Load success view
+     *
+     * @url : /participate/success
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function success()
+    {
+        return view('frontend.html.pages.funnel.success');
     }
 }
