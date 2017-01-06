@@ -15,17 +15,23 @@ Route::get('/facebook/callback', [
  *  Participate URLS
  *  --> [GET] = participate/choose-your-picture
  *  --> [GET] = participate/valid-your-picture
+ *  --> [GET] = participate/success
+ *
  *  --> [POST] = participate/valid-your-picture
  *
  */
 Route::group(['middleware' => 'canForward', 'prefix' => 'participate'], function () {
     Route::get('choose-your-picture', [
         'as'        => 'participate',
-        'uses'      => 'Frontend\ParticipateController@index'
+        'uses'      => 'Frontend\ParticipateController@choose'
     ]);
     Route::get('valid-your-picture', [
         'as'        => 'participate_valid_picture',
         'uses'      => 'Frontend\ParticipateController@valid'
+    ]);
+    Route::get('success', [
+        'as'        => 'participate_success',
+        'uses'      => 'Frontend\ParticipateController@success'
     ]);
     Route::post('valid-your-picture', [
         'as'        => 'participate_valid_picture',
@@ -65,8 +71,8 @@ Route::group(['middleware' => 'isAjax', 'prefix' => 'xhr'], function () {
     ]);
     /**
      *  AJAX REQUEST USED FOR FACEBOOK DATA
-     *  --> Get albums and photos as JSON
-     *  --> Get photos from album id as JSON
+     *  --> [GET] = xhr/albums/all { albums and photos as JSON }
+     *  --> [GET] = xhr/album/{id}/photos { Get photos from album id as JSON }
      */
     Route::get('/albums/all', [
         'uses'      => 'Frontend\XhrController@getAlbums'

@@ -1,0 +1,1 @@
+<img src="{{ $tmp_photo }}" alt="">

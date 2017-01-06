@@ -10,7 +10,6 @@
 namespace App\Helpers;
 
 use App\Contest;
-use Illuminate\Support\Facades\Session;
 
 class ContestHelper
 {

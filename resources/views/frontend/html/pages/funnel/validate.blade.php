@@ -2,6 +2,8 @@
 
 @section('funnel_content')
     <div class="participate_content">
-        <img src="{{ $tmp_photo }}" alt="">
+        @include('frontend.html.pages.funnel.validate.left', ['data' => $tmp_photo])
+        @include('frontend.html.pages.funnel.validate.right', ['data' => $tmp_photo])
+        @include('frontend.html.pages.funnel.validate.buttons')
     </div>
 @endsection

@@ -33,6 +33,10 @@ class FacebookHelper
      */
     protected $defaultPermissions = array('email', 'user_birthday');
     /**
+     * @var array $sharePermissions
+     */
+    protected $sharePermissions = array('publish_actions');
+    /**
      * @var array $participatePermissions
      */
     protected $participatePermissions = array('user_photos', 'publish_actions');
@@ -73,6 +77,9 @@ class FacebookHelper
         /** @var array $permissions */
         $permissions = [];
         switch ($bindAction) {
+            case 'share' :
+                $permissions = array_merge($permissions, $this->defaultPermissions, $this->sharePermissions);
+                break;
             case 'participate' :
                 $permissions = array_merge($permissions, $this->defaultPermissions, $this->participatePermissions);
                 break;
