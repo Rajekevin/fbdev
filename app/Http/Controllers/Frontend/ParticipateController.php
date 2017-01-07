@@ -49,7 +49,7 @@ class ParticipateController extends Controller
     {
         /** @var \App\Helpers\FunnelHelper $funnelHelper */
         $funnelHelper = new FunnelHelper();
-        $pictureId = 'https://scontent.xx.fbcdn.net/v/t31.0-8/q84/s720x720/1063682_10201495830899001_1295309547_o.jpg?oh=a5e470aee1d835fd9c9ba354ce3494b8&oe=58DB33D3';
+        $pictureId = 'https://scontent.xx.fbcdn.net/v/t1.0-9/p720x720/1239707_10201840053904361_319850327_n.jpg?oh=c954274e947ecd237867df23be63e829&oe=59189452';
         if (!$funnelHelper->saveTmpPhoto($pictureId)) {
             return false;
         }
@@ -67,9 +67,15 @@ class ParticipateController extends Controller
     {
         /** @var \App\Helpers\ContestHelper $contestHelper */
         $contestHelper = new ContestHelper();
+        /** @var \App\Helpers\FunnelHelper $funnelHelper */
+        $funnelHelper = new FunnelHelper();
         if (!$contestHelper->addPhotoToContest($request)) {
             return redirect('/participate/choose-your-picture');
         }
+        /*
+         * Destroy all previous data after success page
+         */
+        $funnelHelper->deleteTmpUserParticipation();
 
         return view('frontend.html.pages.funnel.success');
     }

@@ -41,6 +41,11 @@ class RateController extends Controller
         if (!$userHelper->isConnected() || !$fbHelper->hasApplicationRegister()) {
             return json_encode(['error' => ['login' => $fbHelper->getRedirectLoginUrl('like')]]);
         }
+        /** @var array $permissions */
+        $permissions = $fbHelper->checkPermissions(null);
+        if (!$permissions || isset($permissions) && is_array($permissions) && sizeof($permissions) >= 1) {
+            return json_encode(['error' => ['login' => $fbHelper->getReRequestPermissionLoginUrl($permissions)]]);
+        }
         if (!$contestHelper->addVoteToPicture($pictureId)) {
             return json_encode(['error' => ['like' => true]]);
         }

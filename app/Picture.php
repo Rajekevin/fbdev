@@ -68,13 +68,13 @@ class Picture extends Model
         /** @var \App\Helpers\UserHelper $userHelper */
         $userHelper = new UserHelper();
         if (!Picture::create([
-            'link' => $pictureData['link'],
-            'title' => $pictureData['title'],
-            'description' => $pictureData['description'],
-            'location' => $pictureData['location'],
-            'disabled' => false,
-            'author_id' => $userHelper->getId(),
-            'contest_id' => $contestHelper->getCurrentContest(),
+            'link'          => $pictureData['link'],
+            'title'         => $pictureData['title'],
+            'description'   => $pictureData['description'],
+            'location'      => $pictureData['location'],
+            'disabled'      => false,
+            'author_id'     => $userHelper->getId(),
+            'contest_id'    => $contestHelper->getCurrentContest(),
         ])) {
             return false;
         }

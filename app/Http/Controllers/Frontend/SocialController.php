@@ -14,6 +14,7 @@ use App\Http\Controllers\Controller;
 
 use App\Helpers\UserHelper;
 use App\Helpers\FacebookHelper;
+use App\Helpers\UserFacebookHelper;
 
 class SocialController extends Controller
 {
@@ -28,10 +29,17 @@ class SocialController extends Controller
         $userHelper = new UserHelper();
         /** @var \App\Helpers\FacebookHelper $fbHelper */
         $fbHelper = new FacebookHelper();
+        /** @var \App\Helpers\UserFacebookHelper $fbUserHelper */
+        $fbUserHelper = new UserFacebookHelper();
         if (!$userHelper->isConnected() || !$fbHelper->hasApplicationRegister()) {
            return json_encode(['error' => ['login' => $fbHelper->getRedirectLoginUrl('share')]]);
         }
-        if (!$userHelper->sharePictureToUserWall('1343434343')) {
+        /** @var array $permissions */
+        $permissions = $fbHelper->checkPermissions('share');
+        if (!$permissions || isset($permissions) && is_array($permissions) && sizeof($permissions) >= 1) {
+            return json_encode(['error' => ['login' => $fbHelper->getReRequestPermissionLoginUrl($permissions)]]);
+        }
+        if (!$fbUserHelper->sharePicture('1343434343')) {
             return json_encode(['error' => ['share' => true]]);
         }
 

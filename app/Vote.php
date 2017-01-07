@@ -54,6 +54,7 @@ class Vote extends Model
      * Save vote in table, before create we check if it already exist.
      * --> TRUE : Delete current like
      * --> FALSE : Add like
+     * @TODO : finir la vérification avant la sauvegarde du like
      *
      * @param int $pictureId
      * @param int $userId
@@ -75,6 +76,5 @@ class Vote extends Model
 
     protected function checkIfVoteAlreadyExist()
     {
-
     }
 }

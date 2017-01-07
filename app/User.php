@@ -46,7 +46,7 @@ class User extends Authenticatable
 
     /**
      * Save or update facebook user after callback redirect
-     *
+     * @TODO : changer ce truc dégueulasse et vérification des entrées de tableau
      * @param $facebookUser
      * @return bool
      */

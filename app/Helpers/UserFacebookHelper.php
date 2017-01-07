@@ -8,7 +8,6 @@
  * @license             http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  * @link                http://www.didier-youn.com
  */
-
 namespace App\Helpers;
 
 class UserFacebookHelper extends FacebookHelper
@@ -79,5 +78,17 @@ class UserFacebookHelper extends FacebookHelper
         }
 
         return $photos;
+    }
+
+    /**
+     * Share picture in user wall
+     * @TODO : Terminé le share
+     *
+     * @param string $pictureUrl
+     * @return bool
+     */
+    public function sharePicture($pictureUrl)
+    {
+        return true;
     }
 }

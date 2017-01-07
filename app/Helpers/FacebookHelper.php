@@ -43,7 +43,7 @@ class FacebookHelper
     /**
      * @var array $participatePermissions
      */
-    protected $participatePermissions = array('user_photos', 'publish_actions');
+    protected $participatePermissions = array('user_photos');
 
     /**
      * UserHelper constructor.
@@ -173,6 +173,12 @@ class FacebookHelper
         switch ($action) {
             case 'participate' :
                 $finalPermissions = array_merge($finalPermissions, $this->participatePermissions);
+                break;
+            case 'share' :
+                $finalPermissions = array_merge($finalPermissions, $this->sharePermissions);
+                break;
+            default:
+                $finalPermissions = $this->defaultPermissions;
                 break;
         }
         /** @var array $grantedPermissionsKey */
