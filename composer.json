@@ -11,7 +11,9 @@
         "jenssegers/date": "^3.2",
         "barryvdh/laravel-debugbar": "^2.3",
         "filp/whoops": "~1.0",
-        "sammyk/laravel-facebook-sdk": "^3.4"
+        "sammyk/laravel-facebook-sdk": "^3.4",
+        "laravelcollective/html" : "^5.2.0",
+        "doctrine/dbal" : "2.5.*"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

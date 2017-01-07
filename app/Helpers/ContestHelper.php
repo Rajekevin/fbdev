@@ -10,9 +10,64 @@
 namespace App\Helpers;
 
 use App\Contest;
+use App\Picture;
+use App\Vote;
+
+use Illuminate\Support\Facades\DB;
 
 class ContestHelper
 {
+    /** @var \App\Contest $contest */
+    protected $contest;
+
+    /**
+     * ContestHelper constructor.
+     */
+    public function __construct()
+    {
+        $this->contest = new Contest();
+    }
+
+    /**
+     * Get current contest
+     *
+     * @return int
+     */
+    public function getCurrentContest()
+    {
+        /** @var \App\Contest $contest */
+        $contest = $this->contest->getContest();
+
+        return $contest->id;
+    }
+
+    /**
+     * @return array|bool
+     */
+    public function getCurrentContestData()
+    {
+        /** @var array $contestData */
+        $contestData = [];
+        /** @var int $contestId */
+        $contestId = $this->getCurrentContest();
+        /** @var array $pictureCollection */
+        $pictureCollection = Picture::with('votes')->where('contest_id', $contestId)->get();
+        /** @var array $picture */
+        foreach ($pictureCollection as $picture) {
+            if (!isset($picture['id']) || !isset($picture['link']) || !isset($picture['title'])) {
+                continue;
+            }
+            $contestData[] = [
+                'id'        => $picture['id'],
+                'picture'   => $picture['link'],
+                'title'     => $picture['title'],
+                'nbVotes'   => count($picture->Votes)
+            ];
+        }
+
+        return $contestData;
+    }
+
     /**
      * Add photo to contest
      *
@@ -22,9 +77,7 @@ class ContestHelper
     public function addPhotoToCurrentContest($pictureId)
     {
         $pictureId = "156454";
-        /** @var \App\Contest $contest */
-        $contest = new Contest();
-        if (!isset($pictureId) || !$contest->addPictureToCurrentContest($pictureId)) {
+        if (!isset($pictureId) || !$this->contest->addPictureToCurrentContest($pictureId)) {
             return false;
         }
 
