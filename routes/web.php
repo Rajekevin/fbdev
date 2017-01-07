@@ -29,7 +29,7 @@ Route::group(['middleware' => 'canForward', 'prefix' => 'participate'], function
         'as'        => 'participate_valid_picture',
         'uses'      => 'Frontend\ParticipateController@valid'
     ]);
-    Route::get('success', [
+    Route::post('success', [
         'as'        => 'participate_success',
         'uses'      => 'Frontend\ParticipateController@success'
     ]);

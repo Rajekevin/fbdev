@@ -51,4 +51,14 @@ class UserHelper
 
         return new Date($birthday);
     }
+
+    /**
+     *
+     * @param $pictureId
+     * @return bool
+     */
+    public function sharePictureToUserWall($pictureId)
+    {
+        return true;
+    }
 }

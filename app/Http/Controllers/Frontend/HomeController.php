@@ -12,10 +12,17 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
 
+use App\Helpers\ContestHelper;
+
 class HomeController extends Controller
 {
     public function index()
     {
-        return view('frontend.html.index');
+        /** @var \App\Helpers\ContestHelper $contestHelper */
+        $contestHelper = new ContestHelper();
+        /** @var array|bool $contestData */
+        $contestData = $contestHelper->getCurrentContestData();
+
+        return view('frontend.html.index', ['contestData' => $contestData]);
     }
 }

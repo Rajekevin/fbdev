@@ -13,6 +13,7 @@ namespace App\Http\Controllers\Frontend;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
+use App\Picture;
 use App\Helpers\UserFacebookHelper;
 use App\Helpers\FunnelHelper;
 
@@ -48,7 +49,7 @@ class ParticipateController extends Controller
     {
         /** @var \App\Helpers\FunnelHelper $funnelHelper */
         $funnelHelper = new FunnelHelper();
-        $pictureId = 'https://scontent.xx.fbcdn.net/v/t1.0-9/1606843_10203030294619635_191121620_n.jpg?oh=225ad1b14de32bc698015b3eaefd757d&oe=5916AFB5';
+        $pictureId = 'https://scontent.xx.fbcdn.net/v/t31.0-8/q84/s720x720/1063682_10201495830899001_1295309547_o.jpg?oh=a5e470aee1d835fd9c9ba354ce3494b8&oe=58DB33D3';
         if (!$funnelHelper->saveTmpPhoto($pictureId)) {
             return false;
         }
@@ -59,10 +60,23 @@ class ParticipateController extends Controller
      * Load success view
      *
      * @url : /participate/success
+     * @param Request $request
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function success()
+    public function success(Request $request)
     {
+        /** @var \App\Picture $picture */
+        $picture = new Picture();
+        if (!$picture->savePicture([
+            'link'          => $request->input('link'),
+            'title'         => $request->input('title'),
+            'description'   => $request->input('description'),
+            'location'      => $request->input('location'),
+            'author'        => $request->input('author'),
+        ])) {
+            return redirect('/participate/choose-your-picture');
+        }
+
         return view('frontend.html.pages.funnel.success');
     }
 }

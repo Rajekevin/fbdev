@@ -190,6 +190,11 @@ return [
          * Define Facebook SDK Service Provider
          */
         SammyK\LaravelFacebookSdk\LaravelFacebookSdkServiceProvider::class,
+
+        /*
+         * Define FormBuilder Service Provider
+         */
+        Collective\Html\HtmlServiceProvider::class
     ],
 
     /*
@@ -245,6 +250,10 @@ return [
         // Helpers
         'UserHelper' => App\Helpers\UserHelper::class,
         'ContestHelper' => App\Helpers\ContestHelper::class,
+
+        // Formbuilder
+        'Form' => Collective\Html\FormFacade::class,
+        'Html' => Collective\Html\HtmlFacade::class
     ],
 
 ];

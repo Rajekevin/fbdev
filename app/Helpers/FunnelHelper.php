@@ -41,22 +41,26 @@ class FunnelHelper
 
     /**
      * @param $pictureUrl
-     * @return bool
+     * @return bool|array
      */
     public function saveTmpPhoto($pictureUrl)
     {
+        /** @var array $tmpParticipation */
         $tmpParticipation = $this->_getTmpParticipationData();
         if (!isset($tmpParticipation)) {
             return false;
         }
+        /** Save picture in session */
         $tmpParticipation['photo'] = $pictureUrl;
         $this->_updateTmpParticipation($tmpParticipation);
 
-        return true;
+        return $this->_getTmpParticipationData();
     }
 
     /**
-     * @return mixed
+     * Delete the current funnel participation from Session
+     *
+     * @return bool
      */
     public function deleteTmpUserParticipation()
     {
