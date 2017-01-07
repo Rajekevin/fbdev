@@ -1,5 +1,9 @@
 <div class="images_container">
-    @for($i = 0; $i < 3; $i++)
-        @include('frontend.html.pages.home.contest.item.item', ['index' => $i])
-    @endfor
+    @php
+        $contestHelper = new \App\Helpers\ContestHelper();
+        $contestData = $contestHelper->getCurrentContestData();
+    @endphp
+    @foreach($contestData as $contestItem)
+        @include('frontend.html.pages.home.contest.item.item', ['item' => $contestItem])
+    @endforeach
 </div>

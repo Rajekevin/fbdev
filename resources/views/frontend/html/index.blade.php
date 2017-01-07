@@ -7,7 +7,7 @@
 @endsection
 
 @section('content')
-    @include('frontend.html.pages.home')
+    @include('frontend.html.pages.home', ['contestData' => $contestData])
 @endsection
 
 @section('footer')
