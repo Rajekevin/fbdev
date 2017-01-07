@@ -13,9 +13,9 @@ namespace App\Http\Controllers\Frontend;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-use App\Picture;
-use App\Helpers\UserFacebookHelper;
 use App\Helpers\FunnelHelper;
+use App\Helpers\ContestHelper;
+use App\Helpers\UserFacebookHelper;
 
 class ParticipateController extends Controller
 {
@@ -65,15 +65,9 @@ class ParticipateController extends Controller
      */
     public function success(Request $request)
     {
-        /** @var \App\Picture $picture */
-        $picture = new Picture();
-        if (!$picture->savePicture([
-            'link'          => $request->input('link'),
-            'title'         => $request->input('title'),
-            'description'   => $request->input('description'),
-            'location'      => $request->input('location'),
-            'author'        => $request->input('author'),
-        ])) {
+        /** @var \App\Helpers\ContestHelper $contestHelper */
+        $contestHelper = new ContestHelper();
+        if (!$contestHelper->addPhotoToContest($request)) {
             return redirect('/participate/choose-your-picture');
         }
 

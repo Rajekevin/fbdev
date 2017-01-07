@@ -48,8 +48,8 @@ Route::group(['middleware' => 'isAjax', 'prefix' => 'xhr'], function () {
      *  --> Vote / Like
      *  --> Share picture
      */
-    Route::post('/add/vote', [
-        'uses'      => 'Frontend\RateController@addVote'
+    Route::post('/add/like', [
+        'uses'      => 'Frontend\RateController@addLike'
     ]);
     Route::post('/add/share', [
         'uses'      => 'Frontend\SocialController@sharePicture'

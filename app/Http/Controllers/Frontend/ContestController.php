@@ -14,16 +14,31 @@ use App\Http\Controllers\Controller;
 
 class ContestController extends Controller
 {
+    /**
+     * Get items ordered by like
+     *
+     * @return string
+     */
     public function getPicturesByLike()
     {
         return('Filtre par like');
     }
 
+    /**
+     * Get items ordered by newest
+     *
+     * @return string
+     */
     public function getPicturesByNewest()
     {
         return('Filtre par nouveauté');
     }
 
+    /**
+     * Get items ordered by alphabetical
+     *
+     * @return string
+     */
     public function getPicturesByAlphabetical()
     {
         return('Filtre par alphabet');

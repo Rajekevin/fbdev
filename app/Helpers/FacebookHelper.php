@@ -25,6 +25,10 @@ class FacebookHelper
      */
     protected $user;
     /**
+     * @var null $userAccessToken
+     */
+    protected $userAccessToken = null;
+    /**
      * @var array $userFacebookFields
      */
     protected $userFacebookFields = array('email', 'birthday', 'id', 'name', 'last_name', 'verified');
@@ -40,10 +44,6 @@ class FacebookHelper
      * @var array $participatePermissions
      */
     protected $participatePermissions = array('user_photos', 'publish_actions');
-    /**
-     * @var null
-     */
-    protected $userAccessToken = null;
 
     /**
      * UserHelper constructor.

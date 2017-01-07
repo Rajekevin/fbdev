@@ -30,8 +30,7 @@ var FacebookApiExtension = function () {
         'action' : {
             'routes' : {
                 'like': '/xhr/add/like',
-                'share': '/xhr/add/share',
-                'vote': '/xhr/add/vote'
+                'share': '/xhr/add/share'
             },
             'method' : 'POST'
         },
@@ -147,10 +146,6 @@ var FacebookApiExtension = function () {
         }
     };
 
-    var beforeParticipate = function () {
-
-    };
-
     /**
      * Initialize the observers on button action
      *
@@ -164,8 +159,6 @@ var FacebookApiExtension = function () {
         $j(CLASS_BUTTON_FILTER_LIKE).bind('click', { sort : 'by-like'}, beforeAction);
         $j(CLASS_BUTTON_FILTER_NEWEST).bind('click', { sort : 'by-newest'}, beforeAction);
         $j(CLASS_BUTTON_FILTER_ALPHABETICAL).bind('click', { sort : 'by-alphabetical'}, beforeAction);
-
-        $j('.btn-participate').bind('click', beforeParticipate);
     };
 
     /**

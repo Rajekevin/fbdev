@@ -15,19 +15,6 @@ use Jenssegers\Date\Date;
 class UserHelper
 {
     /**
-     * @var null $facebook
-     */
-    protected $facebook;
-
-    /**
-     * UserHelper constructor.
-     */
-    public function __construct()
-    {
-        $this->facebook = app(\SammyK\LaravelFacebookSdk\LaravelFacebookSdk::class);
-    }
-
-    /**
      * Get current user
      *
      * @return bool
@@ -35,6 +22,22 @@ class UserHelper
     public function isConnected()
     {
         return Auth::check() ? true : false;
+    }
+
+    /**
+     * Get current user
+     *
+     * @return bool
+     */
+    public function getId()
+    {
+        /** @var object $user */
+        $user = $this->_getUser();
+        if (!$user) {
+            return false;
+        }
+
+        return $user->id;
     }
 
     /**
@@ -53,12 +56,12 @@ class UserHelper
     }
 
     /**
+     * Get current user
      *
-     * @param $pictureId
-     * @return bool
+     * @return object
      */
-    public function sharePictureToUserWall($pictureId)
+    protected function _getUser()
     {
-        return true;
+        return Auth::user();
     }
 }

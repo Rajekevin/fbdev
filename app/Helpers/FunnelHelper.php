@@ -40,7 +40,12 @@ class FunnelHelper
     }
 
     /**
-     * @param $pictureUrl
+     * Step 1 : We save the photo in session
+     * @TODO : ajouter le titre et le lieu
+     * @TODO : donner un array à la place d'une string
+     * @TODO : Attendre le dev d'Antoine ?
+     *
+     * @param string $pictureUrl
      * @return bool|array
      */
     public function saveTmpPhoto($pictureUrl)

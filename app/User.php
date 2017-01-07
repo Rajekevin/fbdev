@@ -1,40 +1,26 @@
 <?php
 
+/**
+ * Class User
+ *
+ * @author              Didier Youn <didier.youn@gmail.com>
+ * @copyright           Copyright (c) 2016 DidYoun
+ * @license             http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+ * @link                http://www.didier-youn.com
+ */
 namespace App;
 
-use App\Helpers\UserHelper;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Support\Facades\Auth;
 
-/**
- * App\User
- *
- * @property-read \Illuminate\Notifications\DatabaseNotificationCollection|\Illuminate\Notifications\DatabaseNotification[] $notifications
- * @property-read \Illuminate\Notifications\DatabaseNotificationCollection|\Illuminate\Notifications\DatabaseNotification[] $readNotifications
- * @property-read \Illuminate\Notifications\DatabaseNotificationCollection|\Illuminate\Notifications\DatabaseNotification[] $unreadNotifications
- * @mixin \Eloquent
- */
+use App\Helpers\UserHelper;
+
 class User extends Authenticatable
 {
     use Notifiable;
 
     protected $guarded = ['id'];
-
-    public function getRememberToken()
-    {
-        return null;
-    }
-
-    public function setRememberToken($value)
-    {
-        // not supported
-    }
-
-    public function getRememberTokenName()
-    {
-        return null; // not supported
-    }
 
     /**
      * Overrides the method to ignore the remember token.
@@ -47,11 +33,23 @@ class User extends Authenticatable
         }
     }
 
+    /**
+     * Add associations between entity
+     *
+     * @ORM : User has many Pictures
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function pictures()
     {
         return $this->hasMany('App\Picture');
     }
 
+    /**
+     * Save or update facebook user after callback redirect
+     *
+     * @param $facebookUser
+     * @return bool
+     */
     public static function createOrUpdateGraphNode($facebookUser)
     {
         $userHelper = new UserHelper();
@@ -75,6 +73,7 @@ class User extends Authenticatable
         }
 
         Auth::login($user);
+
         return true;
     }
 }

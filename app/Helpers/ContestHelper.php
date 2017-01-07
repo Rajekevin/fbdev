@@ -13,19 +13,26 @@ use App\Contest;
 use App\Picture;
 use App\Vote;
 
-use Illuminate\Support\Facades\DB;
-
 class ContestHelper
 {
+    /** @var \App\Vote $vote */
+    protected $vote;
     /** @var \App\Contest $contest */
     protected $contest;
+    /** @var \App\Picture $picture */
+    protected $picture;
+    /** @var \App\Helpers\UserHelper $userHelper */
+    protected $userHelper;
 
     /**
      * ContestHelper constructor.
      */
     public function __construct()
     {
+        $this->vote = new Vote();
         $this->contest = new Contest();
+        $this->picture = new Picture();
+        $this->userHelper = new UserHelper();
     }
 
     /**
@@ -51,7 +58,7 @@ class ContestHelper
         /** @var int $contestId */
         $contestId = $this->getCurrentContest();
         /** @var array $pictureCollection */
-        $pictureCollection = Picture::with('votes')->where('contest_id', $contestId)->get();
+        $pictureCollection = $this->picture->with('votes')->where('contest_id', $contestId)->get();
         /** @var array $picture */
         foreach ($pictureCollection as $picture) {
             if (!isset($picture['id']) || !isset($picture['link']) || !isset($picture['title'])) {
@@ -71,13 +78,44 @@ class ContestHelper
     /**
      * Add photo to contest
      *
-     * @param string|null $pictureId
+     * @param Request $request
      * @return bool
      */
-    public function addPhotoToCurrentContest($pictureId)
+    public function addPhotoToContest($request)
     {
-        $pictureId = "156454";
-        if (!isset($pictureId) || !$this->contest->addPictureToCurrentContest($pictureId)) {
+        if (!isset($request)) {
+            return false;
+        }
+        if (!$this->picture->savePicture([
+            'link'          => $request->input('link'),
+            'title'         => $request->input('title'),
+            'description'   => $request->input('description'),
+            'location'      => $request->input('location'),
+            'author'        => $request->input('author'),
+        ])) {
+            return false;
+        }
+
+        return true;
+    }
+
+    /**
+     * Add new vote on contest
+     *
+     * @param int $pictureId
+     * @return bool
+     */
+    public function addVoteToPicture($pictureId)
+    {
+        /** @var int $contestId */
+        $contestId = $this->getCurrentContest();
+        /** @var int|bool $userId */
+        $userId = $this->userHelper->getId();
+        if (!isset($contestId) || !isset($userId) || !isset($pictureId)
+        || !$contestId || !$userId || !$pictureId) {
+            return false;
+        }
+        if (!$this->vote->saveVote($pictureId, $userId, $contestId)) {
             return false;
         }
 
