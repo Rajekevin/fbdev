@@ -15,7 +15,6 @@ use App\Vote;
 
 class ContestHelper
 {
-
     /**
      * @var array FILTER_ATTRIBUTES_KEY
      */

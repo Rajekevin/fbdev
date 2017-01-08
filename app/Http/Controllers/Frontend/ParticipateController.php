@@ -49,7 +49,7 @@ class ParticipateController extends Controller
     {
         /** @var \App\Helpers\FunnelHelper $funnelHelper */
         $funnelHelper = new FunnelHelper();
-        $pictureId = 'https://scontent.xx.fbcdn.net/v/t1.0-9/p720x720/1239707_10201840053904361_319850327_n.jpg?oh=c954274e947ecd237867df23be63e829&oe=59189452';
+        $pictureId = 'https://scontent-cdg2-1.xx.fbcdn.net/v/l/t1.0-9/14322278_10210800817956318_4011993129875928157_n.jpg?oh=72c49d9d4654652032972e05bdc4ae9e&oe=58E5B5D6';
         if (!$funnelHelper->saveTmpPhoto($pictureId)) {
             return false;
         }

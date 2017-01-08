@@ -27,6 +27,7 @@ class UserFacebookHelper extends FacebookHelper
     public function __construct()
     {
         $this->picture = new Picture();
+        parent::__construct();
     }
 
     /**
