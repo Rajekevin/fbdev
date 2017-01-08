@@ -16,6 +16,12 @@ use App\Helpers\ContestHelper;
 
 class HomeController extends Controller
 {
+    /**
+     * Load homepage and items of current contest
+     *
+     * @url : /
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function index()
     {
         /** @var \App\Helpers\ContestHelper $contestHelper */
@@ -24,5 +30,25 @@ class HomeController extends Controller
         $contestData = $contestHelper->getCurrentContestData();
 
         return view('frontend.html.index', ['contestData' => $contestData]);
+    }
+
+    /**
+     * Load rules view
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function rules()
+    {
+        return view('frontend.html.pages.rules');
+    }
+
+    /**
+     * Load CGU view
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function cgu()
+    {
+        return view('frontend.html.pages.cgu');
     }
 }

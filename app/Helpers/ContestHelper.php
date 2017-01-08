@@ -15,6 +15,11 @@ use App\Vote;
 
 class ContestHelper
 {
+
+    /**
+     * @var array FILTER_ATTRIBUTES_KEY
+     */
+    const FILTER_ATTRIBUTES_KEY = ['like', 'newest', 'alphabetical'];
     /** @var \App\Vote $vote */
     protected $vote;
     /** @var \App\Contest $contest */
@@ -124,5 +129,60 @@ class ContestHelper
         }
 
         return true;
+    }
+
+    // @TODO : Finir les filtres
+
+    /**
+     * @param string $key
+     * @return array|bool
+    */
+    public function sortItemsByKey($key)
+    {
+        if (!isset($key)) {
+            return false;
+        }
+        if (!in_array($key, self::FILTER_ATTRIBUTES_KEY)) {
+            return false;
+        }
+        /** @var string $bindFunction */
+        $bindFunction = '_loadItemsBy' . ucfirst($key);
+        if (!method_exists($this, $bindFunction)) {
+            return false;
+        }
+        /** @var array $items */
+        $items = $this->$bindFunction();
+
+        return $items;
+    }
+
+    /**
+     * Return an array of items filtered by newest
+     *
+     * @return array|bool
+     */
+    protected function _loadItemsByNewest()
+    {
+        dd('test 1');
+    }
+
+    /**
+     * Return an array of items filtered by alphabetical
+     *
+     * @return array|bool
+     */
+    protected function _loadItemsByAlphabetical()
+    {
+        dd('test 2');
+    }
+
+    /**
+     * Return an array of items filtered by like
+     *
+     * @return array|bool
+     */
+    protected function _loadItemsByLike()
+    {
+        dd('test 3');
     }
 }

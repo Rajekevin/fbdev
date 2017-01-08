@@ -7,6 +7,14 @@ Route::get('/', [
     'as'        => 'root',
     'uses'      => 'Frontend\HomeController@index'
 ]);
+Route::get('/rules', [
+    'as'        => 'rules',
+    'uses'      => 'Frontend\HomeController@rules'
+]);
+Route::get('/terms-of-service', [
+    'as'        => 'cgu',
+    'uses'      => 'Frontend\HomeController@cgu'
+]);
 Route::get('/facebook/callback', [
     'as'        => 'login',
     'uses'      => 'Frontend\UserController@facebookCallback'

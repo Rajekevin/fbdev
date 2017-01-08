@@ -1,1 +1,1 @@
-<div class="header_title">Le plus beau paysage</div>
+<h1 class="italic">Le plus beau paysage</h1>

@@ -12,6 +12,8 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
 
+use App\Helpers\ContestHelper;
+
 class ContestController extends Controller
 {
     /**
@@ -21,6 +23,13 @@ class ContestController extends Controller
      */
     public function getPicturesByLike()
     {
+        /** @var \App\Helpers\ContestHelper $contestHelper */
+        $contestHelper = new ContestHelper();
+        /** @var array|bool $items */
+        $items = $contestHelper->sortItemsByKey('like');
+        if (!isset($items) || !$items) {
+            return false;
+        }
         return('Filtre par like');
     }
 
@@ -31,6 +40,13 @@ class ContestController extends Controller
      */
     public function getPicturesByNewest()
     {
+        /** @var \App\Helpers\ContestHelper $contestHelper */
+        $contestHelper = new ContestHelper();
+        /** @var array|bool $items */
+        $items = $contestHelper->sortItemsByKey('newest');
+        if (!isset($items) || !$items) {
+            return false;
+        }
         return('Filtre par nouveauté');
     }
 
@@ -41,6 +57,13 @@ class ContestController extends Controller
      */
     public function getPicturesByAlphabetical()
     {
+        /** @var \App\Helpers\ContestHelper $contestHelper */
+        $contestHelper = new ContestHelper();
+        /** @var array|bool $items */
+        $items = $contestHelper->sortItemsByKey('alphabetical');
+        if (!isset($items) || !$items) {
+            return false;
+        }
         return('Filtre par alphabet');
     }
 }

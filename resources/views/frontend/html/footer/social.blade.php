@@ -1,4 +1,3 @@
-<div class="share">
-    <span>Facebook</span>
-    <span>Twitter</span>
-</div>
+<a href="https://www.facebook.com/pardonMamanESGI/">
+    <img src="img/fb_logo.png" alt="Lien Facebook">
+</a>

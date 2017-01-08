@@ -1,1 +1,3 @@
-<div>Reglement</div>
+<a href="{{ route('rules') }}">
+    <p>Règlement</p>
+</a>
