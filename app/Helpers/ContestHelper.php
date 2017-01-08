@@ -38,12 +38,15 @@ class ContestHelper
     /**
      * Get current contest
      *
-     * @return int
+     * @return int|bool
      */
     public function getCurrentContest()
     {
         /** @var \App\Contest $contest */
         $contest = $this->contest->getContest();
+        if (!$contest) {
+            return false;
+        }
 
         return $contest->id;
     }
@@ -65,10 +68,11 @@ class ContestHelper
                 continue;
             }
             $contestData[] = [
-                'id'        => $picture['id'],
-                'picture'   => $picture['link'],
-                'title'     => $picture['title'],
-                'nbVotes'   => count($picture->Votes)
+                'id'                => $picture['id'],
+                'picture'           => $picture['link'],
+                'title'             => $picture['title'],
+                'nbVotes'           => count($picture->Votes),
+                'hasAlreadyVote'    => $this->userHelper->checkIfUserHaveAlreadyVote($picture->Votes)
             ];
         }
 

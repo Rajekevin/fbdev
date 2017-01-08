@@ -10,12 +10,24 @@
  */
 namespace App\Helpers;
 
+use App\Picture;
+
 class UserFacebookHelper extends FacebookHelper
 {
     /**
      * @var array $fieldPhotosRequest
      */
     protected $fieldPhotosRequest = array('created_time', 'source', 'images', 'name');
+    /** @var \App\Picture $picture */
+    protected $picture;
+
+    /**
+     * UserFacebookHelper constructor.
+     */
+    public function __construct()
+    {
+        $this->picture = new Picture();
+    }
 
     /**
      * Get albums and photos
@@ -82,13 +94,42 @@ class UserFacebookHelper extends FacebookHelper
 
     /**
      * Share picture in user wall
-     * @TODO : Terminé le share
      *
-     * @param string $pictureUrl
+     * @param string $pictureId
      * @return bool
      */
-    public function sharePicture($pictureUrl)
+    public function sharePicture($pictureId)
     {
-        return true;
+        if (!isset($pictureId) || !$pictureId) {
+            return false;
+        }
+        /** @var array $pictureData */
+        $pictureData = $this->picture->load($pictureId);
+        if (!isset($pictureData) || !isset($pictureData['link']) || !isset($pictureData['title'])
+            || !isset($pictureData['location'])
+        ) {
+            return false;
+        }
+        // @TODO : chopper les bonnes datas
+        $feedData = [
+            "access_token"  => $this->userAccessToken,
+            "message"       => "Bonjour",
+            "link"          => 'test',
+            "picture"       => $pictureData['link'],
+            "name"          => $pictureData['title'],
+            "caption"       => $pictureData['location'],
+            "description"   => "Bonjour"
+        ];
+        try {
+            $result = $this->facebook->post('/me/feed', $feedData, $this->userAccessToken);
+            if ($result) {
+                return true;
+            }
+            return false;
+        } catch(\Facebook\Exceptions\FacebookResponseException $e) {
+            return false;
+        } catch(\Facebook\Exceptions\FacebookSDKException $e) {
+            return false;
+        }
     }
 }

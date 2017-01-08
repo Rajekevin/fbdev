@@ -54,7 +54,6 @@ class Vote extends Model
      * Save vote in table, before create we check if it already exist.
      * --> TRUE : Delete current like
      * --> FALSE : Add like
-     * @TODO : finir la vérification avant la sauvegarde du like
      *
      * @param int $pictureId
      * @param int $userId
@@ -63,6 +62,10 @@ class Vote extends Model
      */
     public function saveVote($pictureId, $userId, $contestId)
     {
+        if ($vote = $this->_checkIfUserHaveAlreadyVote($pictureId, $userId, $contestId)) {
+            $this->deleteVote($vote);
+            return true;
+        }
         if (!Vote::create([
             'user_id' => $userId,
             'picture_id' => $pictureId,
@@ -74,7 +77,45 @@ class Vote extends Model
         return true;
     }
 
-    protected function checkIfVoteAlreadyExist()
+    /**
+     * Destroy vote
+     *
+     * @param $vote
+     * @return bool
+     */
+    public function deleteVote($vote)
     {
+        if (!isset($vote)) {
+            return false;
+        }
+        if (!Vote::destroy($vote->id)) {
+            return false;
+        }
+
+        return true;
+    }
+
+    /**
+     * Check if the user have already vote for the picture
+     *
+     * @param int $pictureId int
+     * @param int $userId
+     * @param int $contestId
+     *
+     * @return bool|array
+     */
+    protected function _checkIfUserHaveAlreadyVote($pictureId, $userId, $contestId)
+    {
+        /** @var array $vote */
+        $vote = Vote::where([
+            ['user_id', $userId],
+            ['picture_id', $pictureId],
+            ['contest_id', $contestId]
+        ])->first();
+        if (!$vote) {
+            return false;
+        }
+
+        return $vote;
     }
 }

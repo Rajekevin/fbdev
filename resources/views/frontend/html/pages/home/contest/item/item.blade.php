@@ -1,4 +1,4 @@
-<div class="image_container" data-id="image-{{ $item['id'] }}">
+<div class="image_container @if($item['hasAlreadyVote'] === true)have-vote @endif" data-id="image-{{ $item['id'] }}">
     <a data-lightbox="image-{{ $item['id'] }}" href="{{ $item['picture'] }}" style="color:#fff;" target="_blank">
         <img src="{{ $item['picture'] }}" alt=""/>
     </a>

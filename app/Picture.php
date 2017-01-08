@@ -53,6 +53,22 @@ class Picture extends Model
     }
 
     /**
+     * Load picture by id
+     *
+     * @param array|string $id
+     * @return array|bool
+     */
+    public function load($id)
+    {
+        $picture = Picture::where('id', $id)->first();
+        if (!$picture || !isset($picture)) {
+            return false;
+        }
+
+        return $picture;
+    }
+
+    /**
      * Save picture in database
      *
      * @param array $pictureData

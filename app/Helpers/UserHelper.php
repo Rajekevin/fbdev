@@ -56,6 +56,29 @@ class UserHelper
     }
 
     /**
+     * Check if user have already vote in current picture
+     *
+     * @param $votes
+     * @return bool
+     */
+    public function checkIfUserHaveAlreadyVote($votes)
+    {
+        if (!isset($votes)) {
+            return false;
+        }
+        /** @var int $userId */
+        $userId = $this->getId();
+        foreach ($votes as $vote) {
+            if ($userId !== $vote->user_id) {
+                continue;
+            }
+            return true;
+        }
+
+        return false;
+    }
+
+    /**
      * Get current user
      *
      * @return object

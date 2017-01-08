@@ -11,6 +11,7 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Request;
 
 use App\Helpers\UserHelper;
 use App\Helpers\FacebookHelper;
@@ -39,7 +40,12 @@ class SocialController extends Controller
         if (!$permissions || isset($permissions) && is_array($permissions) && sizeof($permissions) >= 1) {
             return json_encode(['error' => ['login' => $fbHelper->getReRequestPermissionLoginUrl($permissions)]]);
         }
-        if (!$fbUserHelper->sharePicture('1343434343')) {
+        /** @var int|null $pictureId */
+        $pictureId = Request::input('id');
+        if (!isset($pictureId)) {
+            return json_encode(['error' => ['share' => true]]);
+        }
+        if (!$fbUserHelper->sharePicture($pictureId)) {
             return json_encode(['error' => ['share' => true]]);
         }
 
