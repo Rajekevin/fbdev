@@ -20,15 +20,13 @@
     @yield('js')
 </head>
 <body>
-
-<div id="app">
-    <app></app>
-@include('frontend.html.header')
-
-<div class="content">
-    <div id="container">
-        <!--@include('frontend.html.pages.lightbox') -->
-        @yield('content')
+@yield('header')
+<div id="app">  
+    <div class="content">
+        <div id="container">
+            <choose></choose>
+            @yield('content')
+        </div>
     </div>
 </div>
 </body>

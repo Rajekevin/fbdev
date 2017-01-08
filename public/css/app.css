@@ -291,6 +291,12 @@ footer .footer_container img {
   vertical-align: top;
   width: 46%;
   margin: 2%;
+  width: 13vw;
+  height: 13vw;
+  margin: 1%;
+  background-image: url("../../img/header.jpg");
+  background-size: cover;
+  background-position: center;
 }
 
 .lightbox .lb_image_information h3 {
@@ -299,6 +305,11 @@ footer .footer_container img {
 
 .lightbox .lb_image_information .lb_comments {
   padding-bottom: 0.5em;
+@media screen and (max-width: 1030px) {
+  .participate_content .participate_block_right .album_item {
+    width: 17.5vw;
+    height: 17.5vw;
+  }
 }
 
 .lightbox .lb_image_information .lb_bottom {
@@ -313,11 +324,12 @@ footer .footer_container img {
   margin: 0 0.2em;
 }
 
-.lightbox .lb_image_information .lb_bottom > p {
-  margin: 0;
-  margin-left: 1em;
-  display: inline-block;
-  vertical-align: top;
+.participate_content .participate_block_right .album_item img {
+  width: 100%;
+}
+
+.participate_content .participate_block_right .album_item:first-child {
+  background-image: url("../../img/1.jpg");
 }
 
 .lightbox .lb_optional_information p {
